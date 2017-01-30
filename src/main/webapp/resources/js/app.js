@@ -12,6 +12,24 @@ app.config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $u
 		url : '/list',
 		templateUrl : 'views/list.jsp',
 		controller: 'TodoCtrl'
+	}).state('application', {
+		url: '/application',
+		templateUrl: 'views/application.jsp',
+		controller: 'ApplicationCtrl'
 	});
 
 } ]);
+
+//var app = angular.module("vraptor", [ 'ngResource', 'ngRoute' ]);
+//
+//app.config(function($routeProvider) {
+//	$routeProvider.when("/", {
+//		templateUrl: "views/index.jsp",
+//		controller: "TodoCtrl"
+//	});
+//	
+//	$routeProvider.when("/list", {
+//		templateUrl: "views/list.jsp",
+//		controller: "TodoCtrl"
+//	})
+//})
