@@ -23,6 +23,9 @@ public class Application implements Serializable{
 	private Long id;
 	private String name;
 	private String url;
+	private boolean hasTestUser;
+	private String loginUser;
+	private String passwordUser;
 	
 	public Long getId() {
 		return id;
@@ -41,6 +44,24 @@ public class Application implements Serializable{
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public boolean getHasTestUser() {
+		return hasTestUser;
+	}
+	public void setHasTestUser(boolean hasTestUser) {
+		this.hasTestUser = hasTestUser;
+	}
+	public String getLoginUser() {
+		return loginUser;
+	}
+	public void setLoginUser(String loginUser) {
+		this.loginUser = loginUser;
+	}
+	public String getPasswordUser() {
+		return passwordUser;
+	}
+	public void setPasswordUser(String passwordUser) {
+		this.passwordUser = passwordUser;
 	}
 	
 	

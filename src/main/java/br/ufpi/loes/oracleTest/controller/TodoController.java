@@ -16,7 +16,7 @@ import br.ufpi.loes.oracleTest.model.Todo;
 import br.ufpi.loes.oracleTest.repository.TodoRepository;
 
 @Controller
-@Path("/todo")
+@Path("/backend/todo")
 public class TodoController {
 
 	private final Result result;

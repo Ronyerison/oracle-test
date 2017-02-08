@@ -2,25 +2,44 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<base href="/oracle-test/">
 <title>Oracle Test</title>
-<!-- 	<script type="text/javascript" src="resources/lib/angular/angular.js"></script> -->
-<!-- 	<script type="text/javascript" src="resources/lib/angular/angular-route.js"></script> -->
-<!-- 	<script type="text/javascript" src="resources/lib/angular/angular-resource.js"></script> -->
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-resource.min.js"></script>
-	<script type="text/javascript" src="resources/js/app.js"></script>
-	<script type="text/javascript" src="resources/js/services/TodoService.js"></script>
-	<script type="text/javascript" src="resources/js/controllers/TodoCtrl.js"></script>
-	<script type="text/javascript" src="resources/js/services/ApplicationService.js"></script>
-	<script type="text/javascript" src="resources/js/controllers/ApplicationCtrl.js"></script>
-	<link rel="stylesheet" type="text/css" href="resources/lib/bootstrap/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/app.css">
+
+<!-- ######################### LIBRARIES #########################-->
+<script type="text/javascript" src="resources/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="resources/lib/angular/angular.js"></script>
+<script type="text/javascript" src="resources/lib/angular/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="resources/lib/angular/angular-resource.min.js"></script>
+<script type="text/javascript" src="resources/lib/angular/angular-cookies.min.js"></script>
+<script type="text/javascript" src="resources/lib/sb-admin-2/sb-admin-2.js"></script>
+<script type="text/javascript" src="resources/lib/metisMenu/metisMenu.min.js"></script>
+<script type="text/javascript" src="resources/lib/bootstrap/bootstrap.js"></script>
+
+<script type="text/javascript" src="resources/js/app.js"></script>
+
+<link rel="stylesheet" type="text/css" href="resources/lib/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="resources/css/app.css">
+<link rel="stylesheet" type="text/css" href="resources/lib/sb-admin-2/sb-admin-2.css">
+<link rel="stylesheet" type="text/css" href="resources/lib/metisMenu/metisMenu.min.css" >
+<link rel="stylesheet" type="text/css" href="resources/lib/font-awesome/css/font-awesome.min.css" >
+
+
+
+<!-- ######################### CONTROLLERS #########################-->
+<script type="text/javascript" src="resources/js/controllers/TodoController.js"></script>
+<script type="text/javascript" src="resources/js/controllers/ApplicationController.js"></script>
+<script type="text/javascript" src="resources/js/controllers/UserController.js"></script>
+
+
+<!-- ########################### SERVICES ##########################-->
+<script type="text/javascript" src="resources/js/services/TodoService.js"></script>
+<script type="text/javascript" src="resources/js/services/ApplicationService.js"></script>
+<script type="text/javascript" src="resources/js/services/UserService.js"></script>
+
+
 </head>
-<body ng-app="vraptor">
 
+<body ng-app="oracle-test">
 	<div ui-view></div>
-
 </body>
 </html>

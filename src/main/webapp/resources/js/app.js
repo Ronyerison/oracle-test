@@ -1,35 +1,50 @@
-var app = angular.module("vraptor", [ 'ngResource', 'ui.router' ]);
+'use strict';
 
-app.config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+var app = angular.module("oracle-test", [ 'ngResource', 'ui.router', 'ngCookies']);
 
-	$urlRouterProvider.otherwise('/');
+app.run(function($rootScope, $location, $state, LoginService) {
+	    $rootScope.$on('$stateChangeStart', 
+		      function(event, toState, toParams, fromState, fromParams){ 
+		          console.log('Changed state to: ' + toState);
+		      });
+		    
+		      if(!LoginService.isAuthenticated()) {
+		        $state.transitionTo('login');
+		      }
+  	});
 
-	$stateProvider.state('todo', {
-		url : '/',
-		templateUrl : 'views/index.jsp',
-		controller: 'TodoCtrl'
-	}).state('list', {
-		url : '/list',
-		templateUrl : 'views/list.jsp',
-		controller: 'TodoCtrl'
-	}).state('application', {
-		url: '/application',
-		templateUrl: 'views/application.jsp',
-		controller: 'ApplicationCtrl'
-	});
+app.directive('menu', function() {
+	return {
+		restrict: 'C',
+		templateUrl: 'resources/directives/menu.html'
+	}
+});
 
-} ]);
+app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider',
+		function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-//var app = angular.module("vraptor", [ 'ngResource', 'ngRoute' ]);
-//
-//app.config(function($routeProvider) {
-//	$routeProvider.when("/", {
-//		templateUrl: "views/index.jsp",
-//		controller: "TodoCtrl"
-//	});
-//	
-//	$routeProvider.when("/list", {
-//		templateUrl: "views/list.jsp",
-//		controller: "TodoCtrl"
-//	})
-//})
+			$urlRouterProvider.otherwise('/');
+
+			$stateProvider.state('todo', {
+				url : '/',
+				templateUrl : 'views/index.jsp',
+				controller : 'TodoController'
+			}).state('list', {
+				url : '/list',
+				templateUrl : 'views/list.jsp',
+				controller : 'TodoController'
+			}).state('application', {
+				url : '/application',
+				templateUrl : 'views/application.jsp',
+				controller : 'ApplicationController'
+			}).state('login', {
+				url : '/login',
+				templateUrl : 'views/login.jsp',
+				controller : 'UserController'
+			});
+
+			$locationProvider.html5Mode(true);
+
+		} ]);
+
+

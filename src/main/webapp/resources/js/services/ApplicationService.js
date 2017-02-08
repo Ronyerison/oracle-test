@@ -1,5 +1,5 @@
-angular.module("vraptor").service("ApplicationService", [ '$resource', function($resource) {
-	return $resource("application/:id", {
+angular.module("oracle-test").service("ApplicationService", [ '$resource', function($resource) {
+	return $resource("backend/application/:id", {
 		id : '@_id'
 	}, {
 		update : {

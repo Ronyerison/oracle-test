@@ -17,7 +17,7 @@ import br.ufpi.loes.oracleTest.model.Todo;
 import br.ufpi.loes.oracleTest.repository.ApplicationDao;
 
 @Controller
-@Path("/application")
+@Path("/backend/application")
 public class ApplicationController {
 
 	private final Result result;
@@ -49,8 +49,12 @@ public class ApplicationController {
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("")
 	public void create(Application application) {
-		result.use(Results.json()).withoutRoot()
-				.from(applicationDao.create(application)).serialize();
+		try {
+			result.use(Results.json()).withoutRoot()
+					.from(applicationDao.create(application)).serialize();
+		} catch (Exception e) {
+			result.include(e);
+		}
 
 	}
 

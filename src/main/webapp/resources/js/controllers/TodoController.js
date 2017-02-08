@@ -1,4 +1,4 @@
-angular.module("vraptor").controller('TodoCtrl', [ '$scope', 'TodoService', function($scope, TodoService) {
+angular.module("oracle-test").controller('TodoController', [ '$scope', 'TodoService', function($scope, TodoService) {
 	$scope.todo = new TodoService();
 	
 	$scope.add = function(todo) {

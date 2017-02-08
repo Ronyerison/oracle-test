@@ -1,4 +1,4 @@
-angular.module("vraptor").controller('ApplicationCtrl', [ '$scope', 'ApplicationService', function($scope, ApplicationService) {
+angular.module("oracle-test").controller('ApplicationController', [ '$scope', 'ApplicationService', function($scope, ApplicationService) {
 	$scope.application = new ApplicationService();
 	
 	$scope.add = function(application) {

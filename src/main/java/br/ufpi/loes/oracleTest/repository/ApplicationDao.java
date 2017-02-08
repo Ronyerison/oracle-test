@@ -4,17 +4,13 @@
 package br.ufpi.loes.oracleTest.repository;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import br.ufpi.loes.oracleTest.exceptions.OracleException;
 import br.ufpi.loes.oracleTest.model.Application;
 
 /**
@@ -25,29 +21,43 @@ import br.ufpi.loes.oracleTest.model.Application;
 public class ApplicationDao implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private Map<Long, Application> applicationList;
 
 	@Inject
 	private EntityManager em;
 	
 	public ApplicationDao() {
 	}
-	
-	@PostConstruct
-	public void init() {
-		applicationList = new HashMap<>();
-	}
 
 	public List<Application> findAll() {
-		return new ArrayList<>(applicationList.values());
+		try {
+			return em.createQuery("Select a from Application a", Application.class).getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public Application find(Long id) {
-		return applicationList.get(id);
+		try {
+			return em.find(Application.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public Application create(Application application) {
+	public Application create(Application application) throws Exception{
 		application.setId(new Random().nextLong());
+		try {
+			return em.merge(application);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new OracleException("Problema ao Salvar Aplicação");
+		}
+	}
+
+	public Application update(Application application) {
 		try {
 			em.merge(application);
 			return application;
@@ -58,12 +68,14 @@ public class ApplicationDao implements Serializable{
 		}
 	}
 
-	public Application update(Application application) {
-		applicationList.put(application.getId(), application);
-		return application;
-	}
-
 	public Application delete(Long id) {
-		return applicationList.remove(id);
+		try {
+			Application application = em.find(Application.class, id);
+			em.remove(application);
+			return application;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
