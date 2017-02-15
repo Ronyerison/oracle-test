@@ -1,29 +1,23 @@
-'use strict';
-
-var app = angular.module("oracle-test", [ 'ngResource', 'ui.router', 'ngCookies']);
+var app = angular.module("oracle-test", [ 'ngResource', 'ui.router',
+		'ngCookies' ]);
 
 app.run(function($rootScope, $location, $state, LoginService) {
-	    $rootScope.$on('$stateChangeStart', 
-		      function(event, toState, toParams, fromState, fromParams){ 
-		          console.log('Changed state to: ' + toState);
-		      });
-		    
-		      if(!LoginService.isAuthenticated()) {
-		        $state.transitionTo('login');
-		      }
-  	});
+	$rootScope.$on('$stateChangeStart', function(event, toState, toParams,
+			fromState, fromParams) {
+		console.log('Changed state to: ' + toState);
+	});
 
-app.directive('menu', function() {
-	return {
-		restrict: 'C',
-		templateUrl: 'resources/directives/menu.html'
+	if (!LoginService.isAuthenticated()) {
+		$state.transitionTo('login');
 	}
 });
 
 app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider',
 		function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-			$urlRouterProvider.otherwise('/');
+			$locationProvider.html5Mode(true);
+
+			$urlRouterProvider.otherwise('login');
 
 			$stateProvider.state('todo', {
 				url : '/',
@@ -35,16 +29,20 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider',
 				controller : 'TodoController'
 			}).state('application', {
 				url : '/application',
-				templateUrl : 'views/application.jsp',
-				controller : 'ApplicationController'
+				views: {
+					'': {
+						templateUrl : 'views/application.html',
+						controller: 'ApplicationController'
+					},
+					'header-view@application' : {
+						templateUrl :'views/partials/menu.html',
+						controller : 'UserController'
+					}
+				}
 			}).state('login', {
 				url : '/login',
-				templateUrl : 'views/login.jsp',
+				templateUrl : 'views/login.html',
 				controller : 'UserController'
 			});
 
-			$locationProvider.html5Mode(true);
-
 		} ]);
-
-
