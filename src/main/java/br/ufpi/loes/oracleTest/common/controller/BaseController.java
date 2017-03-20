@@ -3,9 +3,6 @@ package br.ufpi.loes.oracleTest.common.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import br.com.caelum.vraptor.Result;
 import br.ufpi.loes.oracleTest.common.util.Message;
 
 

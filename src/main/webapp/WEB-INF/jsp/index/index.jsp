@@ -11,9 +11,9 @@
 <script type="text/javascript" src="resources/lib/angular/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="resources/lib/angular/angular-resource.min.js"></script>
 <script type="text/javascript" src="resources/lib/angular/angular-cookies.min.js"></script>
-<script type="text/javascript" src="resources/lib/sb-admin-2/sb-admin-2.js"></script>
-<script type="text/javascript" src="resources/lib/metisMenu/metisMenu.min.js"></script>
 <script type="text/javascript" src="resources/lib/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="resources/lib/metisMenu/metisMenu.min.js"></script>
+<script type="text/javascript" src="resources/lib/sb-admin-2/sb-admin-2.js"></script>
 
 <script type="text/javascript" src="resources/js/app.js"></script>
 
@@ -39,7 +39,7 @@
 
 </head>
 
-<body ng-app="oracle-test">
+<body ng-app="oracle-test">TESTE
 	<div ui-view></div>
 </body>
 </html>
