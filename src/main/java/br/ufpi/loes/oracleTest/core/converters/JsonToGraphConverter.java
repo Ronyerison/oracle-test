@@ -11,10 +11,10 @@ import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.DirectedMultigraph;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
-import br.ufpi.loes.oracleTest.core.Action;
 import br.ufpi.loes.oracleTest.core.graph.Event;
 import br.ufpi.loes.oracleTest.core.graph.State;
 import br.ufpi.loes.oracleTest.core.webdriver.WebDriverManager;
+import br.ufpi.loes.oracleTest.web.model.Action;
 
 /**
  * @author Ronyerison

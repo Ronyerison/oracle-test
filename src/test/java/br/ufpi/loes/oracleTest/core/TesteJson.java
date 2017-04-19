@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import br.ufpi.loes.oracleTest.core.converters.JsonToGraphConverter;
 import br.ufpi.loes.oracleTest.core.graph.Event;
 import br.ufpi.loes.oracleTest.core.graph.State;
+import br.ufpi.loes.oracleTest.web.model.Action;
 
 /**
  * @author Ronyerison

@@ -5,7 +5,6 @@ package br.ufpi.loes.oracleTest.web.repository;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Random;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -47,7 +46,7 @@ public class ApplicationDao implements Serializable{
 	}
 
 	public Application create(Application application) throws Exception{
-		application.setId(new Random().nextLong());
+//		application.setId(new Random().nextLong());
 		try {
 			return em.merge(application);
 			

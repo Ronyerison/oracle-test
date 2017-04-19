@@ -102,6 +102,7 @@
 					<artifactId>jboss-logging</artifactId>
 				</exclusion>
 			</exclusions>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -123,11 +124,17 @@
 			<version>1.7.5</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>hibernate-core</artifactId> -->
+<!-- 			<version>5.2.5.Final</version> -->
+<!-- 		</dependency> -->
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.2.5.Final</version>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.2.8.Final</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
