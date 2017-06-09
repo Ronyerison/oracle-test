@@ -44,6 +44,7 @@ public class Action implements Serializable{
 	private String updateAt;
 	private Long sOracleElements;
 	private Long sOracleVisibleElements;
+	private String sOracleUrl;
 	
 	public Action() {
 	}
@@ -81,7 +82,7 @@ public class Action implements Serializable{
 			String sName, String sXPath, String sUserAgent, String sClient,
 			Long sVersion, String sUserName, String sRole, String sJhm,
 			String sActionJhm, String sSectionJhm, Boolean sDeleted,
-			String createdAt, String updateAt, Long sOracleElements, Long sOracleVisibleElements) {
+			String createdAt, String updateAt, Long sOracleElements, Long sOracleVisibleElements, String sOracleUrl) {
 		this.id = id;
 		this.sActionType = sActionType;
 		this.sContent = sContent;
@@ -109,6 +110,7 @@ public class Action implements Serializable{
 		this.updateAt = updateAt;
 		this.sOracleElements = sOracleElements;
 		this.sOracleVisibleElements = sOracleVisibleElements;
+		this.sOracleUrl = sOracleUrl;
 	}
 
 	public Action(Action action){
@@ -137,6 +139,7 @@ public class Action implements Serializable{
 		this.sDeleted = action.sDeleted;
 		this.sOracleElements = action.sOracleElements;
 		this.sOracleVisibleElements = action.sOracleVisibleElements;
+		this.sOracleUrl = action.sOracleUrl;
 	}
 
 
