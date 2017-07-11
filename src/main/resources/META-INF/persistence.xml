@@ -8,22 +8,9 @@
 		<class>br.ufpi.loes.oracleTest.web.model.Application</class>
 		<class>br.ufpi.loes.oracleTest.web.model.Action</class>
 
-		<properties>
-			<property name="hibernate.connection.url" value="jdbc:mysql://us-cdbr-iron-east-03.cleardb.net/heroku_7195a5e87443875" />
-			<property name="hibernate.connection.username" value="b7ca698d1fadc0" />
-			<property name="hibernate.connection.password" value="2dfce56f" />
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="show_sql" value="true" />
-			<property name="format_sql" value="true" />
-
-		</properties>
-
 <!-- 		<properties> -->
-<!-- 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/oracle" /> -->
-<!-- 			<property name="hibernate.connection.username" value="root" /> -->
+<!-- 			<property name="hibernate.connection.url" value="jdbc:mysql://mysql-oracle-project.7e14.starter-us-west-2.openshiftapps.com:3306/oracle2" /> -->
+<!-- 			<property name="hibernate.connection.username" value="rony" /> -->
 <!-- 			<property name="hibernate.connection.password" value="root" /> -->
 <!-- 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> -->
 <!-- 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" /> -->
@@ -33,6 +20,19 @@
 <!-- 			<property name="format_sql" value="true" /> -->
 
 <!-- 		</properties> -->
+
+		<properties>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/oracle" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="root" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="show_sql" value="true" />
+			<property name="format_sql" value="true" />
+
+		</properties>
 	</persistence-unit>
 
 	<!-- <persistence-unit name="default" -->
