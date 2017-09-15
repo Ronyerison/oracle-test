@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.ufpi.loes.oracleTest.web.model.Action;
 
@@ -29,6 +30,17 @@ public class ActionsDao implements Serializable{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public List<Action> findActionsByApplication(String applicationName){
+		try {
+			TypedQuery<Action> query = em.createQuery("Select a from Action a where lower(a.sClient) like :applicationName", Action.class);
+			query.setParameter("applicationName", '%' + applicationName.toLowerCase() + '%');
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 

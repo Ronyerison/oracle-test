@@ -1,31 +1,41 @@
 /*!
- * Configuration:
+ * Configuration: Esse comando script deve ser inserido em cada página da aplicação para captura de dados
 
- <script type="text/javascript" src="http://useskill.com/jscripts/useskill/capt.mining.useskill.nojquery.js"></script>
  <script type="text/javascript">
- USER = {
- username: "username-"+new Date().getTime(),
- role: "role-"+new Date().getTime()
- };
 
- useskill_capt_onthefly({
- url: "http://easii.ufpi.br/useskill-capture/actions/create",
- waitdomready: false, //se for verdadeiro, aguarda o evento DOMContentLoaded ser disparado, caso contrario ja executa a captura
- sendactions: false, //enviar acoes para o servidor
- debug: true, //apresentar dados no console
+		//caso utilize JQuery no sistema, utilize o Jquery.ready() e o paramatro "waitdomready" = false 
+		jQuery(document).ready(function(){
+			try{
+				useskill_capt_onthefly({
+					client: "THEEND", //nome abreviado do sistema monitorado
+					version: 1, //versao do script de captura
+		
+// 					url: "http://easii.ufpi.br/useskill-capture/actions/create",
+					url: "http://localhost:8080/oracle-test/backend/actions",
+					waitdomready: false, //se for verdadeiro, aguarda o evento DOMContentLoaded ser disparado, caso contrario ja executa a captura
+					sendactions: true, //enviar acoes para o servidor
+					debug: false, //apresentar dados no console
+					
+					onthefly: true, //para scripts inseridos via onthefly
+					plugin: false, //apenas para script via plugin do chrome
+					
+					captureback: false, //captura de eventos de voltar -> con
+					capturehashchange: false, //capturar eventos de mudanca de hash
+					jheat: false, //para sistemas baseados no jheat
+					timetosubmit: 120, //periodicidade em segundos para envio de eventos
+					
+					//dados do usuario logado:
+					username: "usuarioTeste", //pode ser retornado por funcao ou uma string
+					role: "user", //pode ser retornado por funcao ou uma string,
 
- onthefly: true, //para scripts inseridos via onthefly
- captureback: false, //captura de eventos de voltar -> con
- capturehashchange: false, //capturar eventos de mudanca de hash
- jheat: false, //para sistemas baseados no jheat
- plugin: false, //apenas para script via plugin do chrome
-
- client: "Test", //nome do cliente
- version: 1, //versao do script de captura
- username: function() { return USER.username; }, //pode ser funcao ou uma string
- role: function() { return USER.role; } //pode ser funcao ou uma string
- });
- </script>
+					oracleElements: ["#teste1", "#teste2", "#teste3", ".abc"],
+					veredict: "PASS"
+				});
+			} catch(e) {
+				console.log('usability analytics stopped!');
+			}
+		});
+	</script>
 
  */
 
@@ -250,6 +260,7 @@ try {
 					: false;
 			// ORACLA CONFIGURATIONS
 			var ORACLE_ELEMENTS = obj.oracleElements ? obj.oracleElements : [];
+			var VEREDICT = obj.veredict ? obj.veredict : "PASS";
 
 			// VARIABLES
 			var TIME_SUBMIT = 1000 * TIME_TO_SUBMIT, ultimaAcao = null, sending = false, LOCALSTORAGE_VAR = "";
@@ -430,6 +441,7 @@ try {
 
 				this.sOracleVisibleElements = getOracleVisibleElements();
 				this.sOracleUrl = this.sUrl;
+				this.sOracleVeredict = VEREDICT;
 			}
 
 			// LISTENERS DE EVENTOS

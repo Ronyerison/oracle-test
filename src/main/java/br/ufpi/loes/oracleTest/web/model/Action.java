@@ -45,6 +45,7 @@ public class Action implements Serializable{
 	private Long sOracleElements;
 	private Long sOracleVisibleElements;
 	private String sOracleUrl;
+	private String sOracleVeredict;
 	
 	public Action() {
 	}
@@ -82,7 +83,7 @@ public class Action implements Serializable{
 			String sName, String sXPath, String sUserAgent, String sClient,
 			Long sVersion, String sUserName, String sRole, String sJhm,
 			String sActionJhm, String sSectionJhm, Boolean sDeleted,
-			String createdAt, String updateAt, Long sOracleElements, Long sOracleVisibleElements, String sOracleUrl) {
+			String createdAt, String updateAt, Long sOracleElements, Long sOracleVisibleElements, String sOracleUrl, String sOracleVeredict) {
 		this.id = id;
 		this.sActionType = sActionType;
 		this.sContent = sContent;
@@ -140,9 +141,12 @@ public class Action implements Serializable{
 		this.sOracleElements = action.sOracleElements;
 		this.sOracleVisibleElements = action.sOracleVisibleElements;
 		this.sOracleUrl = action.sOracleUrl;
+		this.sOracleVeredict = action.sOracleVeredict;
 	}
 
-
+	public Action clone(){
+		return new Action(this);
+	}
 
 	public Long getId() {
 		return id;
@@ -306,23 +310,32 @@ public class Action implements Serializable{
 	public void setsOracleVisibleElements(Long sOracleVisibleElements) {
 		this.sOracleVisibleElements = sOracleVisibleElements;
 	}
+	public String getsOracleUrl() {
+		return sOracleUrl;
+	}
+	public void setsOracleUrl(String sOracleUrl) {
+		this.sOracleUrl = sOracleUrl;
+	}
+	public String getsOracleVeredict() {
+		return sOracleVeredict;
+	}
+	public void setsOracleVeredict(String sOracleVeredict) {
+		this.sOracleVeredict = sOracleVeredict;
+	}
 
 	@Override
 	public String toString() {
-		return "Action [id=" + id + ", sActionType=" + sActionType
-				+ ", sContent=" + sContent + ", sPosX=" + sPosX + ", sPosY="
-				+ sPosY + ", sTag=" + sTag + ", sTagIndex=" + sTagIndex
-				+ ", sTime=" + sTime + ", sUrl=" + sUrl + ", sContentText="
-				+ sContentText + ", sClass=" + sClass + ", sId=" + sId
-				+ ", sName=" + sName + ", sXPath=" + sXPath + ", sUserAgent="
-				+ sUserAgent + ", sClient=" + sClient + ", sVersion=" + sVersion
-				+ ", sUserName=" + sUserName + ", sRole=" + sRole + ", sJhm="
-				+ sJhm + ", sActionJhm=" + sActionJhm + ", sSectionJhm="
-				+ sSectionJhm + ", sDeleted=" + sDeleted + ", createdAt="
-				+ createdAt + ", updateAt=" + updateAt + ", sOracleElements="
-				+ sOracleElements + ", sOracleVisibleElements="
-				+ sOracleVisibleElements + "]";
+		return "Action [id=" + id + ", sActionType=" + sActionType + ", sContent=" + sContent + ", sPosX=" + sPosX
+				+ ", sPosY=" + sPosY + ", sTag=" + sTag + ", sTagIndex=" + sTagIndex + ", sTime=" + sTime + ", sUrl="
+				+ sUrl + ", sContentText=" + sContentText + ", sClass=" + sClass + ", sId=" + sId + ", sName=" + sName
+				+ ", sXPath=" + sXPath + ", sUserAgent=" + sUserAgent + ", sClient=" + sClient + ", sVersion="
+				+ sVersion + ", sUserName=" + sUserName + ", sRole=" + sRole + ", sJhm=" + sJhm + ", sActionJhm="
+				+ sActionJhm + ", sSectionJhm=" + sSectionJhm + ", sDeleted=" + sDeleted + ", createdAt=" + createdAt
+				+ ", updateAt=" + updateAt + ", sOracleElements=" + sOracleElements + ", sOracleVisibleElements="
+				+ sOracleVisibleElements + ", sOracleUrl=" + sOracleUrl + ", sOracleVeredict=" + sOracleVeredict + "]";
 	}
+
+	
 
 	
 }
