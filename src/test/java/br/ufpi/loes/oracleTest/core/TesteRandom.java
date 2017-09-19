@@ -1,25 +1,30 @@
 package br.ufpi.loes.oracleTest.core;
 
-import java.util.Random;
+import br.ufpi.loes.oracleTest.core.machineLearning.MachineLearning;
 
 public class TesteRandom {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int visibleElements = 233;
+//		int visibleElements = 233;
+//		
+//		Random rand = new Random();
+//		
+//		for (int i = 0; i < 10; i++) {
+//			int newNum = rand.nextInt(60) - 30;
+//			if(newNum >= 0 && newNum < 10) {
+//				newNum += 10;
+//			}
+//			if(newNum < 0 && newNum > -10) {
+//				newNum -= 10;
+//			}
+//			System.out.println(newNum);
+//		}
 		
-		Random rand = new Random();
-		
-		for (int i = 0; i < 10; i++) {
-			int newNum = rand.nextInt(60) - 30;
-			if(newNum >= 0 && newNum < 10) {
-				newNum += 10;
-			}
-			if(newNum < 0 && newNum > -10) {
-				newNum -= 10;
-			}
-			System.out.println(newNum);
-		}
+		MachineLearning ml = new MachineLearning();
+		ml.inicializeInstances();
+		System.out.println("Class: " + ml.getInstances().classAttribute().toString());
+		ml.inicializeAlgorithm();
 	}
 
 }

@@ -3,12 +3,10 @@
  */
 package br.ufpi.loes.oracleTest.core.converters;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import org.jgrapht.DirectedGraph;
-import org.jgrapht.graph.DirectedMultigraph;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
 import br.ufpi.loes.oracleTest.core.graph.Event;

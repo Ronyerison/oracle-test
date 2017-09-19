@@ -43,5 +43,16 @@ public class ActionsDao implements Serializable{
 			return null;
 		}
 	}
+	
+	public List<String> listOracleURL(String applicationName){
+		try {
+			TypedQuery<String> query = em.createQuery("Select distinct a.sOracleUrl from Action a where lower(a.sClient) like :applicationName", String.class);
+			query.setParameter("applicationName", '%' + applicationName.toLowerCase() + '%');
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }
