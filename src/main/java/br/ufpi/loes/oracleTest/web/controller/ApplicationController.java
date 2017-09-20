@@ -14,7 +14,6 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.ufpi.loes.oracleTest.common.controller.BaseController;
 import br.ufpi.loes.oracleTest.web.model.Application;
-import br.ufpi.loes.oracleTest.web.model.Todo;
 import br.ufpi.loes.oracleTest.web.repository.ApplicationDao;
 
 @Controller
@@ -41,9 +40,9 @@ public class ApplicationController extends BaseController{
 	}
 	
 	@Get("/{application.id}")
-	public void getOne(Todo todo) {
+	public void getOne(Application application) {
 		result.use(Results.json()).withoutRoot()
-				.from(applicationDao.find(todo.getId())).serialize();
+				.from(applicationDao.find(application.getId())).serialize();
 
 	}
 
@@ -72,9 +71,9 @@ public class ApplicationController extends BaseController{
 	}
 
 	@Delete("/{application.id}")
-	public void delete(Todo todo) {
+	public void delete(Application application) {
 		result.use(Results.json()).withoutRoot()
-				.from(applicationDao.delete(todo.getId())).serialize();
+				.from(applicationDao.delete(application.getId())).serialize();
 
 	}
 

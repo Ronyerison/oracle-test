@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -58,6 +59,13 @@ public class ActionsController extends BaseController{
 					.from(messages).serialize();
 			e.printStackTrace();
 		}
+	}
+	
+	@Get("/{applicationName}")
+	public void getActionsByApplication(String applicationName) {
+		result.use(Results.json()).withoutRoot()
+				.from(actionsDao.findActionsByApplication(applicationName)).serialize();
+
 	}
 	
 	private static List<Action> toList(String json) {
