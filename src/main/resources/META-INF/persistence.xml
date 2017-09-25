@@ -4,23 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>mysql://b6049b0f5a1106:5cae6774@us-cdbr-iron-east-05.cleardb.net/heroku_eb6da6a43bce095?reconnect=true</jta-data-source>
-		
 		<class>br.ufpi.loes.oracleTest.web.model.User</class>
 		<class>br.ufpi.loes.oracleTest.web.model.Application</class>
 		<class>br.ufpi.loes.oracleTest.web.model.Action</class>
-		
-		
-		<properties>
-			<property name="jboss.as.jpa.providerModule" value="org.hibernate"/>
-	        <property name="jboss.as.jpa.adapterModule" value="org.jboss.as.jpa.hibernate"/>
-	        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-	        <property name="hibernate.show_sql" value="true" />
-	        <property name="hibernate.format_sql" value="true" />
-	        <property name="hibernate.hbm2ddl.auto" value="update" />
-		</properties>
-		
 
 <!-- 		<properties> -->
 <!-- 			<property name="hibernate.connection.url" value="jdbc:mysql://mysql-oracle-project.7e14.starter-us-west-2.openshiftapps.com:3306/oracle2" /> -->
@@ -35,18 +21,18 @@
 
 <!-- 		</properties> -->
 
-<!-- 		<properties> -->
-<!-- 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/oracle" /> -->
-<!-- 			<property name="hibernate.connection.username" value="root" /> -->
-<!-- 			<property name="hibernate.connection.password" value="root" /> -->
-<!-- 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> -->
-<!-- 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" /> -->
-<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" /> -->
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
-<!-- 			<property name="show_sql" value="true" /> -->
-<!-- 			<property name="format_sql" value="true" /> -->
+		<properties>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/oracle" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="root" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="show_sql" value="true" />
+			<property name="format_sql" value="true" />
 
-<!-- 		</properties> -->
+		</properties>
 	</persistence-unit>
 
 	<!-- <persistence-unit name="default" -->
