@@ -9,9 +9,9 @@
 		<class>br.ufpi.loes.oracleTest.web.model.Action</class>
 
 		<properties>
-			<property name="hibernate.connection.url" value="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/${OPENSHIFT_APP_NAME}" />
-			<property name="hibernate.connection.username" value="${OPENSHIFT_MYSQL_DB_USERNAME}" />
-			<property name="hibernate.connection.password" value="${OPENSHIFT_MYSQL_DB_PASSWORD}" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://${MYSQL_SERVICE_HOST}:${MYSQL_SERVICE_PORT}/${MYSQL_DATABASE}" />
+			<property name="hibernate.connection.username" value="${MYSQL_USER}" />
+			<property name="hibernate.connection.password" value="${MYSQL_PASSWORD}" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
