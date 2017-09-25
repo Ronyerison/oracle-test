@@ -4,6 +4,7 @@
 package br.ufpi.loes.oracleTest.core.machineLearning;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.Random;
 
 import weka.classifiers.AbstractClassifier;
@@ -17,21 +18,25 @@ import weka.experiment.InstanceQuery;
  * @author Rony
  *
  */
-public class MachineLearning {
+public class MachineLearning implements Serializable{
 
+	private static final long serialVersionUID = 2723293435964284837L;
+	
 	private Instances instances;
 	private Classifier classifier;
 	private static final String MYSQL_USER = "root";
 	private static final String MYSQL_PASSWORD = "root";
 
-	public void inicializeInstances() {
+	public void inicializeInstances(String applicationName) {
 		try {
+			
+			String sql = "SELECT * FROM Action a WHERE a.sClient LIKE '%" + applicationName + "%'";
 			File file = new File(getClass().getClassLoader().getResource("DatabaseUtils.props").toURI());
 			InstanceQuery query = new InstanceQuery();
 			query.setCustomPropsFile(file);
 			query.setUsername(MYSQL_USER);
 			query.setPassword(MYSQL_PASSWORD);
-			query.setQuery("select * from Action");
+			query.setQuery(sql);
 
 			instances = query.retrieveInstances();
 			instances.setClassIndex(14);

@@ -6,7 +6,8 @@ import java.util.List;
 import br.ufpi.loes.oracleTest.common.util.Message;
 
 
-public abstract class BaseController {
+public abstract class BaseController{
+	
 	protected List<Message> messages;
 	
 	public BaseController() {
