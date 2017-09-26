@@ -102,7 +102,7 @@
 					<artifactId>jboss-logging</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>provided</scope>
+<!-- 			<scope>provided</scope> -->
 		</dependency>
 
 		<dependency>
@@ -134,7 +134,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.2.8.Final</version>
-			<scope>provided</scope>
+<!-- 			<scope>provided</scope> -->
 		</dependency>
 
 		<dependency>
@@ -148,6 +148,16 @@
 			<artifactId>vraptor-jpa</artifactId>
 			<version>4.0.5</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat -->
+		<dependency>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat</artifactId>
+		    <version>9.0.0.M1</version>
+		    <type>pom</type>
+		</dependency>
+		
+		
 	</dependencies>
 
 	<build>
@@ -169,18 +179,18 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
 				<!-- Mudanca para heroku -->
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<outputDirectory>target/wildfly-8.2.0.Final/standalone/deployments</outputDirectory>
-					<warName>ROOT</warName>
-				</configuration>
+<!-- 				<configuration> -->
+<!-- 					<failOnMissingWebXml>false</failOnMissingWebXml> -->
+<!-- 					<outputDirectory>target/wildfly-8.2.0.Final/standalone/deployments</outputDirectory> -->
+<!-- 					<warName>ROOT</warName> -->
+<!-- 				</configuration> -->
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.1</version>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.tomcat.maven</groupId> -->
+<!-- 				<artifactId>tomcat7-maven-plugin</artifactId> -->
+<!-- 				<version>2.1</version> -->
+<!-- 			</plugin> -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -255,32 +265,32 @@
 
 
 			<!-- Mudanca para heroku -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.10</version>
-				<executions>
-					<execution>
-						<id>unpack</id>
-						<phase>package</phase>
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.wildfly</groupId>
-									<artifactId>wildfly-dist</artifactId>
-									<version>8.2.0.Final</version>
-									<type>zip</type>
-									<overWrite>false</overWrite>
-									<outputDirectory>target</outputDirectory>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-dependency-plugin</artifactId> -->
+<!-- 				<version>2.10</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>unpack</id> -->
+<!-- 						<phase>package</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>unpack</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<artifactItems> -->
+<!-- 								<artifactItem> -->
+<!-- 									<groupId>org.wildfly</groupId> -->
+<!-- 									<artifactId>wildfly-dist</artifactId> -->
+<!-- 									<version>8.2.0.Final</version> -->
+<!-- 									<type>zip</type> -->
+<!-- 									<overWrite>false</overWrite> -->
+<!-- 									<outputDirectory>target</outputDirectory> -->
+<!-- 								</artifactItem> -->
+<!-- 							</artifactItems> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 
