@@ -3,10 +3,10 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-<!-- 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL"> -->
-<!-- 		<class>br.ufpi.loes.oracleTest.web.model.User</class> -->
-<!-- 		<class>br.ufpi.loes.oracleTest.web.model.Application</class> -->
-<!-- 		<class>br.ufpi.loes.oracleTest.web.model.Action</class> -->
+	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+		<class>br.ufpi.loes.oracleTest.web.model.User</class>
+		<class>br.ufpi.loes.oracleTest.web.model.Application</class>
+		<class>br.ufpi.loes.oracleTest.web.model.Action</class>
 
 <!-- 		<properties> -->
 <!-- 			<property name="hibernate.connection.url" value="jdbc:mysql://mysql-oracle-project.7e14.starter-us-west-2.openshiftapps.com:3306/oracle2" /> -->
@@ -21,19 +21,19 @@
 
 <!-- 		</properties> -->
 
-<!-- 		<properties> -->
-<!-- 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/oracle" /> -->
-<!-- 			<property name="hibernate.connection.username" value="root" /> -->
-<!-- 			<property name="hibernate.connection.password" value="root" /> -->
-<!-- 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> -->
-<!-- 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" /> -->
-<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" /> -->
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
-<!-- 			<property name="show_sql" value="true" /> -->
-<!-- 			<property name="format_sql" value="true" /> -->
+		<properties>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/oracle" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="root" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="show_sql" value="true" />
+			<property name="format_sql" value="true" />
 
-<!-- 		</properties> -->
-<!-- 	</persistence-unit> -->
+		</properties>
+	</persistence-unit>
 
 	<!-- <persistence-unit name="default" -->
 	<!-- transaction-type="JTA"> -->
@@ -49,18 +49,18 @@
 	<!-- </properties> -->
 	<!-- </persistence-unit> -->
 	
-	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:jboss/oracle-test</jta-data-source>
+<!-- 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL"> -->
+<!-- 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> -->
+<!-- 		<jta-data-source>java:jboss/oracle-test</jta-data-source> -->
 		
-		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="jboss.as.jpa.adapterModule" value="org.jboss.as.jpa.hibernate"/>
-			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
-		</properties>
-	</persistence-unit>
+<!-- 		<properties> -->
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
+<!-- 			<property name="hibernate.show_sql" value="true" /> -->
+<!-- 			<property name="hibernate.format_sql" value="true" /> -->
+<!-- 			<property name="jboss.as.jpa.adapterModule" value="org.jboss.as.jpa.hibernate"/> -->
+<!-- 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/> -->
+<!-- 		</properties> -->
+<!-- 	</persistence-unit> -->
 	
 </persistence>
