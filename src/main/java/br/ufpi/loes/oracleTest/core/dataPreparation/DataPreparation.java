@@ -3,6 +3,7 @@
  */
 package br.ufpi.loes.oracleTest.core.dataPreparation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,8 +17,10 @@ import br.ufpi.loes.oracleTest.web.repository.ActionsDao;
  * @author Rony
  *
  */
-public class DataPreparation {
+public class DataPreparation implements Serializable{
 
+	private static final long serialVersionUID = 7008960070106137865L;
+	
 	@Inject
 	private ActionsDao actionsDao;
 

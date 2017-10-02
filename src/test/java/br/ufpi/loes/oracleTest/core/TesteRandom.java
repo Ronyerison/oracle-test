@@ -22,7 +22,7 @@ public class TesteRandom {
 //		}
 		
 		MachineLearning ml = new MachineLearning();
-		ml.inicializeInstances();
+		ml.inicializeInstances("THEEND");
 		System.out.println("Class: " + ml.getInstances().classAttribute().toString());
 		ml.inicializeAlgorithm();
 	}
