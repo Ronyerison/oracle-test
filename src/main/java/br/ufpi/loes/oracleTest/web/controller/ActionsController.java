@@ -46,7 +46,7 @@ public class ActionsController extends BaseController{
 	@Post("")
 	public void saveActions(Object acoes){
 		try {
-			System.out.println(acoes.toString());
+//			System.out.println(acoes.toString());
 			List<Action> actions = toList((String) acoes);
 			actionsDao.saveActions(actions);
 			addSucessMessage("Ações persistidas!");
