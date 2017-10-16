@@ -19,6 +19,8 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.serialization.gson.WithRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.ufpi.loes.oracleTest.common.controller.BaseController;
+import br.ufpi.loes.oracleTest.core.dataPreparation.DataPreparation;
+import br.ufpi.loes.oracleTest.core.machineLearning.MachineLearning;
 import br.ufpi.loes.oracleTest.web.model.Action;
 import br.ufpi.loes.oracleTest.web.repository.ActionsDao;
 
@@ -28,51 +30,63 @@ import br.ufpi.loes.oracleTest.web.repository.ActionsDao;
  */
 @Controller
 @Path("/backend/actions")
-public class ActionsController extends BaseController{
-	
+public class ActionsController extends BaseController {
+
 	private final Result result;
 	private final ActionsDao actionsDao;
-	
+	private final MachineLearning machineLearning;
+	private final DataPreparation dataPreparation;
+
 	public ActionsController() {
-		this(null, null);
+		this(null, null, null, null);
 	}
 
 	@Inject
-	public ActionsController(Result result, ActionsDao actionsDao) {
+	public ActionsController(Result result, ActionsDao actionsDao, MachineLearning machineLearning,
+			DataPreparation dataPreparation) {
 		this.result = result;
 		this.actionsDao = actionsDao;
+		this.machineLearning = machineLearning;
+		this.dataPreparation = dataPreparation;
 	}
 
 	@Consumes(value = "application/json", options = WithRoot.class)
 	@Post("")
-	public void saveActions(Object acoes){
+	public void saveActions(Object acoes) {
 		try {
 			System.out.println(acoes.toString());
 			List<Action> actions = toList((String) acoes);
 			actionsDao.saveActions(actions);
 			addSucessMessage("Ações persistidas!");
-			result.use(Results.json()).withoutRoot()
-					.from(messages).serialize();
+			result.use(Results.json()).withoutRoot().from(messages).serialize();
 		} catch (Exception e) {
 			addErrorMessage("Problema ao salvar ações!");
-			result.use(Results.json()).withoutRoot()
-					.from(messages).serialize();
+			result.use(Results.json()).withoutRoot().from(messages).serialize();
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Get("/{applicationName}")
 	public void getActionsByApplication(String applicationName) {
-		result.use(Results.json()).withoutRoot()
-				.from(actionsDao.findActionsByApplication(applicationName)).serialize();
+		result.use(Results.json()).withoutRoot().from(actionsDao.findActionsByApplication(applicationName)).serialize();
 
 	}
-	
+
+	@Get("/simulation/{applicationName}")
+	public void executeMethod(String applicationName) {
+		dataPreparation.preparateActions(applicationName);
+		machineLearning.inicializeInstances(applicationName);
+		machineLearning.inicializeAlgorithm();
+
+		result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
+	}
+
 	private static List<Action> toList(String json) {
-	    if (null == json) {
-	        return null;
-	    }
-	    Gson gson = new Gson();
-	    return gson.fromJson(json, new TypeToken<List<Action>>(){}.getType());
+		if (null == json) {
+			return null;
+		}
+		Gson gson = new Gson();
+		return gson.fromJson(json, new TypeToken<List<Action>>() {
+		}.getType());
 	}
 }

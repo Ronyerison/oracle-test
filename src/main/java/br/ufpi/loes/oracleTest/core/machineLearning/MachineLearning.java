@@ -18,18 +18,23 @@ import weka.experiment.InstanceQuery;
  * @author Rony
  *
  */
-public class MachineLearning implements Serializable{
+public class MachineLearning implements Serializable {
 
 	private static final long serialVersionUID = 2723293435964284837L;
-	
+
 	private Instances instances;
 	private Classifier classifier;
+	private MachineLearningReport report;
 	private static final String MYSQL_USER = "root";
 	private static final String MYSQL_PASSWORD = "root";
 
+	public MachineLearning() {
+
+	}
+
 	public void inicializeInstances(String applicationName) {
 		try {
-			
+
 			String sql = "SELECT * FROM Action a WHERE a.sClient LIKE '%" + applicationName + "%'";
 			File file = new File(getClass().getClassLoader().getResource("DatabaseUtils.props").toURI());
 			InstanceQuery query = new InstanceQuery();
@@ -55,14 +60,20 @@ public class MachineLearning implements Serializable{
 			Evaluation eval = new Evaluation(randData);
 			eval.crossValidateModel(classifier, randData, 10, new Random(1));
 
+			this.report = new MachineLearningReport(classifier.getClass().getName(),
+					eval.toSummaryString("=== " + 10 + "-fold Cross-validation ===", false),
+					Utils.joinOptions(((AbstractClassifier) classifier).getOptions()), 10, 1);
+
 			System.out.println();
 			System.out.println("=== Setup ===");
-			System.out.println("Classifier: " + classifier.getClass().getName() + " " + Utils.joinOptions(((AbstractClassifier) classifier).getOptions()));
+			System.out.println("Classifier: " + classifier.getClass().getName() + " "
+					+ Utils.joinOptions(((AbstractClassifier) classifier).getOptions()));
 			System.out.println("Dataset: " + instances.relationName());
 			System.out.println("Folds: " + 10);
 			System.out.println("Seed: " + 1);
 			System.out.println();
 			System.out.println(eval.toSummaryString("=== " + 10 + "-fold Cross-validation ===", false));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,6 +95,14 @@ public class MachineLearning implements Serializable{
 		this.classifier = classifier;
 	}
 
+	public MachineLearningReport getReport() {
+		return report;
+	}
+
+	public void setReport(MachineLearningReport report) {
+		this.report = report;
+	}
 	
 	
+
 }
