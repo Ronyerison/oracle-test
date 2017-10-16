@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.ufpi.loes.oracleTest.web.controller;
 
@@ -29,10 +29,10 @@ import br.ufpi.loes.oracleTest.web.repository.ActionsDao;
 @Controller
 @Path("/backend/actions")
 public class ActionsController extends BaseController{
-	
+
 	private final Result result;
 	private final ActionsDao actionsDao;
-	
+
 	public ActionsController() {
 		this(null, null);
 	}
@@ -47,7 +47,7 @@ public class ActionsController extends BaseController{
 	@Post("")
 	public void saveActions(Object acoes){
 		try {
-			System.out.println(acoes.toString());
+			// System.out.println(acoes.toString());
 			List<Action> actions = toList((String) acoes);
 			actionsDao.saveActions(actions);
 			addSucessMessage("Ações persistidas!");
@@ -60,14 +60,14 @@ public class ActionsController extends BaseController{
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Get("/{applicationName}")
 	public void getActionsByApplication(String applicationName) {
 		result.use(Results.json()).withoutRoot()
 				.from(actionsDao.findActionsByApplication(applicationName)).serialize();
 
 	}
-	
+
 	private static List<Action> toList(String json) {
 	    if (null == json) {
 	        return null;
