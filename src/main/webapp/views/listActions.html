@@ -1,0 +1,76 @@
+<div class="container-fluid">
+	
+	<div id="top" class="row">
+		
+		<div class="col-md-3">
+	        <h2>Actions</h2>
+	    </div>
+	    
+	    <div class="col-md-6">
+	    	<div class="input-group h2">
+				<form ng-submit="list()" class="form">
+					<fieldset>
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="applicationName" placeholder="Application Name" required="" autofocus />
+							<button class="btn btn-primary" type="submit">search actions</button>
+							<button class="btn btn-primary" ng-click="generateInvalideActions()">Gerar Ações Invalidas</button>
+						</div>
+					</fieldset>
+				</form>
+	    	</div>
+	    </div>
+	    
+<!-- 	    <div class="col-md-3"> -->
+<!-- 	    	<form ng-submit="generateInvalideActions()" class="form"> -->
+<!-- 					<fieldset> -->
+<!-- 						<div class="form-group"> -->
+<!-- 							<input type="text" class="form-control" ng-model="applicationName" placeholder="Application Name" required="" autofocus /> -->
+<!-- 							<button class="btn btn-primary" type="submit">search actions</button> -->
+<!-- 						</div> -->
+<!-- 					</fieldset> -->
+<!-- 				</form> -->
+<!-- 	        <button class="btn btn-primary" ng-submit="generateInvalideActions()" type="submit">Gerar Ações Invalidas</button> -->
+<!-- 	    </div> -->
+	    
+	</div> <!-- /#top -->
+ 
+	<hr />
+	<div id="list" class="row">
+		 
+		 <div class="table-responsive col-md-12">
+		 	<table class="table table-striped" cellspacing="0" cellpadding="0">
+		 		
+		 		<thead>
+		 			<tr>
+		 				<th>ID</th>
+		 				<th>ActionType</th>
+		 				<th>Tag</th>
+		 				<th>URL</th>
+		 				<th>Elements Visible</th>
+		 				<th>Oracle Url</th>
+		 				<th>Oracle Veredict</th>
+		 			</tr>
+		 		</thead>
+		 		
+		 		<tbody>
+		 			<tr ng-repeat="action in actions">
+		 				<td><strong>{{action.id}}</strong></td>
+		 				<td>{{action.sActionType}}</td>
+		 				<td>{{action.sTagIndex}}</td>
+		 				<td>{{action.sUrl}}</td>
+		 				<td>{{action.sOracleVisibleElements}}</td>
+		 				<td>{{action.sOracleUrl}}</td>
+		 				<td>{{action.sOracleVeredict}}</td>
+		 			</tr>
+		 		</tbody>
+		 		
+		 	</table>
+		 </div>
+		 
+	</div> <!-- /#list -->
+ 
+	<div id="bottom" class="row">
+     
+	</div> <!-- /#bottom -->
+	
+</div>

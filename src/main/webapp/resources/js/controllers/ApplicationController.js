@@ -3,6 +3,7 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 	$scope.add = function() {
 		$scope.userInfo = JSON.parse($cookieStore.get("userInfo"));
 		$scope.application.owner = $scope.userInfo;
+		
 		ApplicationService.addApplication($scope.application).success(function(data) {
 			//TODO: ADD MENSAGEM DE SUCESSO
 			$scope.application = undefined;

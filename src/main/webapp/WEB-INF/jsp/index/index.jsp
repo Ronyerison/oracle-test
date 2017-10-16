@@ -29,17 +29,19 @@
 <script type="text/javascript" src="resources/js/controllers/TodoController.js"></script>
 <script type="text/javascript" src="resources/js/controllers/ApplicationController.js"></script>
 <script type="text/javascript" src="resources/js/controllers/UserController.js"></script>
+<script type="text/javascript" src="resources/js/controllers/ActionController.js"></script>
 
 
 <!-- ########################### SERVICES ##########################-->
 <script type="text/javascript" src="resources/js/services/TodoService.js"></script>
 <script type="text/javascript" src="resources/js/services/ApplicationService.js"></script>
 <script type="text/javascript" src="resources/js/services/UserService.js"></script>
+<script type="text/javascript" src="resources/js/services/ActionService.js"></script>
 
 
 </head>
 
-<body ng-app="oracle-test">TESTE
+<body ng-app="oracle-test">
 	<div ui-view></div>
 </body>
 </html>

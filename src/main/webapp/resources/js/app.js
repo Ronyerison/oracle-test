@@ -43,6 +43,10 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider',
 				url : '/login',
 				templateUrl : 'views/login.html',
 				controller : 'UserController'
+			}).state('action', {
+				url : '/actions',
+				templateUrl : 'views/listActions.html',
+				controller : 'ActionController'
 			});
 
 		} ]);
