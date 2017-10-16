@@ -32,8 +32,6 @@ public class DataPreparation implements Serializable{
 		List<String> oracleURLs = actionsDao.listOracleURL(applicationName);
 		List<Action> dubiousActions = generateDubious(actions);
 		List<Action> failActions = generateFails(actions, oracleURLs);
-		actions.addAll(failActions);
-		actions.addAll(dubiousActions);
 		
 		actionsDao.saveActions(failActions);
 		actionsDao.saveActions(dubiousActions);
