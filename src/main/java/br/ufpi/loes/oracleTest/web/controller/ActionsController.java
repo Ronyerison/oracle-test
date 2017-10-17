@@ -78,7 +78,7 @@ public class ActionsController extends BaseController{
 		dataPreparation.preparateActions(applicationName);
 		machineLearning.inicializeInstances(applicationName);
 		machineLearning.inicializeAlgorithm();
-
+		System.out.println(machineLearning.getReport().toString());
 		result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
 	}
 

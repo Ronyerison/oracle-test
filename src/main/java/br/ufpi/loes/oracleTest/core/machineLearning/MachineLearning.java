@@ -35,7 +35,7 @@ public class MachineLearning implements Serializable {
 	public void inicializeInstances(String applicationName) {
 		try {
 
-			String sql = "SELECT * FROM Action a WHERE a.sClient LIKE '%" + applicationName + "%'";
+			String sql = "SELECT a.sActiontype, a.sTag, a.sTagIndex, a.sUrl, a.sXPath, a.sOracleVisibleElements, a.sOracleUrl, a.sOracleveredict  FROM Action a WHERE a.sClient LIKE '%" + applicationName + "%'";
 			File file = new File(getClass().getClassLoader().getResource("DatabaseUtils.props").toURI());
 			InstanceQuery query = new InstanceQuery();
 			query.setCustomPropsFile(file);
@@ -44,7 +44,7 @@ public class MachineLearning implements Serializable {
 			query.setQuery(sql);
 
 			instances = query.retrieveInstances();
-			instances.setClassIndex(14);
+			instances.setClassIndex(7);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,7 +55,6 @@ public class MachineLearning implements Serializable {
 			Classifier classifier = AbstractClassifier.forName("weka.classifiers.meta.AdaBoostM1",
 					new String[] { "-P", "100", "-I", "8", "-Q", "-S", "1", "-W", "weka.classifiers.rules.JRip", "--",
 							"-N", "4.5956335694418815", "-E", "-O", "1" });
-
 			Instances randData = new Instances(instances);
 			Evaluation eval = new Evaluation(randData);
 			eval.crossValidateModel(classifier, randData, 10, new Random(1));

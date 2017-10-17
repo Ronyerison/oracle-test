@@ -44,6 +44,17 @@ public class ActionsDao implements Serializable{
 		}
 	}
 	
+	public List<Action> findPassActionsByApplication(String applicationName){
+		try {
+			TypedQuery<Action> query = em.createQuery("Select a from Action a where lower(a.sClient) like :applicationName AND a.sOracleVeredict like '%PASS%'", Action.class);
+			query.setParameter("applicationName", '%' + applicationName.toLowerCase() + '%');
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public List<String> listOracleURL(String applicationName){
 		try {
 			TypedQuery<String> query = em.createQuery("Select distinct a.sOracleUrl from Action a where lower(a.sClient) like :applicationName", String.class);

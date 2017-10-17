@@ -28,7 +28,7 @@ public class DataPreparation implements Serializable{
 	}
 
 	public void preparateActions(String applicationName) {
-		List<Action> actions = actionsDao.findActionsByApplication(applicationName);
+		List<Action> actions = actionsDao.findPassActionsByApplication(applicationName);
 		List<String> oracleURLs = actionsDao.listOracleURL(applicationName);
 		List<Action> dubiousActions = generateDubious(actions);
 		List<Action> failActions = generateFails(actions, oracleURLs);
@@ -56,8 +56,9 @@ public class DataPreparation implements Serializable{
 			if(newNum < 0 && newNum > -10) {
 				newNum -= 10;
 			}
-			
 			action.setsOracleVisibleElements(action.getsOracleVisibleElements() + newNum);
+			action.setId(null);
+			action.setsOracleVeredict("DUBIOUS");
 		}
 		
 		return dubiousActions;
@@ -85,6 +86,8 @@ public class DataPreparation implements Serializable{
 			if(!action.getsOracleUrl().equalsIgnoreCase(oracleURLs.get(posOracleURL))){
 				action.setsOracleUrl(oracleURLs.get(posOracleURL));
 			}
+			action.setId(null);
+			action.setsOracleVeredict("FAIL");
 		}
 		
 		return failActions;
