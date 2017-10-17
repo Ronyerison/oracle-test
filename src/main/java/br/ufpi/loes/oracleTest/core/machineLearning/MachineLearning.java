@@ -58,21 +58,23 @@ public class MachineLearning implements Serializable {
 			Instances randData = new Instances(instances);
 			Evaluation eval = new Evaluation(randData);
 			eval.crossValidateModel(classifier, randData, 10, new Random(1));
-
-			this.report = new MachineLearningReport(classifier.getClass().getName(),
-					eval.toSummaryString("=== " + 10 + "-fold Cross-validation ===", false),
-					Utils.joinOptions(((AbstractClassifier) classifier).getOptions()), 10, 1);
-
-			System.out.println();
-			System.out.println("=== Setup ===");
-			System.out.println("Classifier: " + classifier.getClass().getName() + " "
-					+ Utils.joinOptions(((AbstractClassifier) classifier).getOptions()));
-			System.out.println("Dataset: " + instances.relationName());
-			System.out.println("Folds: " + 10);
-			System.out.println("Seed: " + 1);
-			System.out.println();
-			System.out.println(eval.toSummaryString("=== " + 10 + "-fold Cross-validation ===", false));
 			
+			this.report = new MachineLearningReport();
+			this.report.setAlgorithmName(classifier.getClass().getName());
+			this.report.setEvaluation(eval.toSummaryString(10 + "-fold Cross-validation", false));
+			this.report.setClassifierOptions(Utils.joinOptions(((AbstractClassifier) classifier).getOptions()));
+			this.report.setFolds(10);
+			this.report.setConfusionMatrix(eval.confusionMatrix());
+			this.report.setErrorrate(eval.errorRate());
+			this.report.setKappa(eval.kappa());
+			this.report.setMeanAbsoluteError(eval.meanAbsoluteError());
+			this.report.setNumCorrect(eval.correct());
+			this.report.setNumIncorrect(eval.incorrect());
+			this.report.setPctCorrect(eval.pctCorrect());
+			this.report.setPctIncorrect(eval.pctIncorrect());
+			this.report.addClassMeasurements(randData, eval);
+//			randData.attribute(randData.classIndex()).enumerateValues();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
