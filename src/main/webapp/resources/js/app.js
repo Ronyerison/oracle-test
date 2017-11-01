@@ -12,8 +12,13 @@ app.run(function($rootScope, $location, $state, LoginService) {
 	}
 });
 
-app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider',
-		function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config([
+		'$stateProvider',
+		'$urlRouterProvider',
+		'$locationProvider',
+		'$httpProvider',
+		function($stateProvider, $urlRouterProvider, $locationProvider,
+				$httpProvider) {
 
 			$locationProvider.html5Mode(false);
 
@@ -29,13 +34,13 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider',
 				controller : 'TodoController'
 			}).state('application', {
 				url : '/application',
-				views: {
-					'': {
+				views : {
+					'' : {
 						templateUrl : 'views/application.html',
-						controller: 'ApplicationController'
+						controller : 'ApplicationController'
 					},
 					'header-view@application' : {
-						templateUrl :'views/partials/menu.html',
+						templateUrl : 'views/partials/menu.html',
 						controller : 'UserController'
 					}
 				}
@@ -48,5 +53,12 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider',
 				templateUrl : 'views/listActions.html',
 				controller : 'ActionController'
 			});
+
+			// Enable cross domain calls
+			$httpProvider.defaults.useXDomain = true;
+
+			// Remove the header used to identify ajax call that would prevent
+			// CORS from working
+			delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 		} ]);
