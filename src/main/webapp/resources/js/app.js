@@ -5,11 +5,21 @@ app.run(function($rootScope, $location, $state, LoginService) {
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams,
 			fromState, fromParams) {
 		console.log('Changed state to: ' + toState);
+		
+		if(toState.name === 'login'){
+			console.log('Entrou no login');
+			return;
+		}
+		console.log(LoginService.isAuthenticated());
+		if (LoginService.isAuthenticated() === false) {
+			console.log('Entrou na verificacao');
+			$state.transitionTo('login');
+			event.preventDefault();
+		}
+		console.log('Passou direto!');
 	});
 
-	if (!LoginService.isAuthenticated()) {
-		$state.transitionTo('login');
-	}
+	
 });
 
 app.config([

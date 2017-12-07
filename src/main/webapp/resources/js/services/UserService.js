@@ -1,8 +1,9 @@
 angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieStore", function($http, $q, $cookieStore) {
-	var userVO = null;
+	var userInfo = null;
 	var isLogged = false;
+	var result = null;
 	
-	function isAuthenticated(isLogged) {
+	function isAuthenticated() {
 		return isLogged;
 	}
 	
@@ -12,32 +13,38 @@ angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieSt
 			email: email,
 			password: password
 		}
-		return $http.post("http://localhost:8080/oracle-test/backend/users/login", JSON.stringify(user));
+		$http.post("http://localhost:8080/oracle-test/backend/users/login", JSON.stringify(user))
+			.then(function (result){
+				if(result.status == 200){
+					userInfo = {
+						email: result.data.email,
+						name: result.data.name,
+						login: result.data.login
+					}
+					isLogged = true;
+					var date = new Date();
+					date.setTime(date.getTime() + (30 * 3600000));
+					
+					$cookieStore.put("userInfo", JSON.stringify(userInfo), {'expires': date});
+					deferred.resolve(userInfo);
+				}else{
+					deferred.reject(result);
+				}
+			}, function(error) {
+				deferred.reject(error);
+			});
+		
+		return deferred.promise;
 	};
 	
-	
+	function getUserInfo(){
+		return userInfo;
+	}
 	
 	return{
 		login: login,
-		isAuthenticated: isAuthenticated
+		isAuthenticated: isAuthenticated,
+		userInfo: getUserInfo
 	};
 }]);
 		
-//		if(result.data.code == 200){
-//			userVO = {
-//				email: result.data.result.email,
-//				name: result.data.result.name,
-//				login: result.data.result.login
-//			}
-//			isLogged = true;
-//			var date = new Date();
-//			date.setTime(date.getTime() + (30 * 3600000));
-//			
-//			$cookieStore.put("userInfo", JSON.stringify(userVO), {'expires': date});
-//			deferred.resolve(userInfo);
-//		}else{
-//			deferred.reject(result);
-//		}
-//	}, function(error) {
-//		deferred.reject(error);
-//	});
