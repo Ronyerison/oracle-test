@@ -22,10 +22,13 @@ public class ActionsDao implements Serializable{
 
 	@Inject
 	private EntityManager em;
+	@Inject
+	private ApplicationDao applicationDao;
 	
 	public void saveActions(List<Action> actions) {
 		try {
 			for (Action action : actions) {
+				action.setApplication(applicationDao.getApplicationByName(action.getsClient()));
 				em.merge(new Action(action));
 			}
 		} catch (Exception e) {

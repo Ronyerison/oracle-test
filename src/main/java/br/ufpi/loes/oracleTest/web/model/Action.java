@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Action implements Serializable{
@@ -46,6 +47,9 @@ public class Action implements Serializable{
 	private Long sOracleVisibleElements;
 	private String sOracleUrl;
 	private String sOracleVeredict;
+	
+	@ManyToOne
+	private Application application;
 	
 	public Action() {
 	}
@@ -321,6 +325,14 @@ public class Action implements Serializable{
 	}
 	public void setsOracleVeredict(String sOracleVeredict) {
 		this.sOracleVeredict = sOracleVeredict;
+	}
+	
+	public Application getApplication() {
+		return application;
+	}
+
+	public void setApplication(Application application) {
+		this.application = application;
 	}
 
 	@Override

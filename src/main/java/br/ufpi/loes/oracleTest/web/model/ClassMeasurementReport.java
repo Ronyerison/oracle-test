@@ -1,10 +1,11 @@
-package br.ufpi.loes.oracleTest.core.machineLearning;
+package br.ufpi.loes.oracleTest.web.model;
 
 import java.io.Serializable;
 
 public class ClassMeasurementReport implements Serializable{
 	
 	private static final long serialVersionUID = -8310473962793200876L;
+	
 	
 	private Double precision;
 	private Double fMeasure;
@@ -18,6 +19,7 @@ public class ClassMeasurementReport implements Serializable{
 	private Double truePositiveRate;
 	private Double numTrueNegative;
 	private Double numTruePositive;
+	
 	
 	public ClassMeasurementReport() {
 	}
@@ -112,6 +114,10 @@ public class ClassMeasurementReport implements Serializable{
 	public void setNumTruePositive(Double numTruePositive) {
 		this.numTruePositive = numTruePositive;
 	}
+	
+
+
+	
 	
 	@Override
 	public String toString() {

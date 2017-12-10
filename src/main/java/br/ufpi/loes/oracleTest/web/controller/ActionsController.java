@@ -23,6 +23,7 @@ import br.ufpi.loes.oracleTest.core.dataPreparation.DataPreparation;
 import br.ufpi.loes.oracleTest.core.machineLearning.MachineLearning;
 import br.ufpi.loes.oracleTest.web.model.Action;
 import br.ufpi.loes.oracleTest.web.repository.ActionsDao;
+import br.ufpi.loes.oracleTest.web.repository.ReportDao;
 
 /**
  * @author Ronyerison
@@ -34,21 +35,23 @@ public class ActionsController extends BaseController{
 
 	private final Result result;
 	private final ActionsDao actionsDao;
+	private final ReportDao reportDao;
 
 	private final MachineLearning machineLearning;
 	private final DataPreparation dataPreparation;
 
 	public ActionsController() {
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 
 	@Inject
 	public ActionsController(Result result, ActionsDao actionsDao, MachineLearning machineLearning,
-			DataPreparation dataPreparation) {
+			DataPreparation dataPreparation, ReportDao reportDao) {
 		this.result = result;
 		this.actionsDao = actionsDao;
 		this.machineLearning = machineLearning;
 		this.dataPreparation = dataPreparation;
+		this.reportDao = reportDao;
 	}
 
 	@Consumes(value = "application/json", options = WithRoot.class)
@@ -75,11 +78,17 @@ public class ActionsController extends BaseController{
 
 	@Get("/simulation/{applicationName}")
 	public void executeMethod(String applicationName) {
-		dataPreparation.preparateActions(applicationName);
-		machineLearning.inicializeInstances(applicationName);
-		machineLearning.inicializeAlgorithm();
-		System.out.println(machineLearning.getReport().toString());
-		result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
+		try {
+			dataPreparation.preparateActions(applicationName);
+			machineLearning.inicializeInstances(applicationName);
+			machineLearning.inicializeAlgorithm();
+			System.out.println(machineLearning.getReport().toString());
+			reportDao.insert(machineLearning.getReport(), applicationName);
+			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	private static List<Action> toList(String json) {

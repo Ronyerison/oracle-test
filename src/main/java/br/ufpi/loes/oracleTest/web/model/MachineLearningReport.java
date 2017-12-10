@@ -1,22 +1,37 @@
-package br.ufpi.loes.oracleTest.core.machineLearning;
+package br.ufpi.loes.oracleTest.web.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.Transient;
+
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
 
+@Entity
 public class MachineLearningReport implements Serializable {
 
 	private static final long serialVersionUID = 4926746817120766888L;
-
+	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String algorithmName;
 	private String evaluation;
 	private String classifierOptions;
 	private Integer folds;
+	@Transient
 	private double[][] confusionMatrix;
+	private String confusionMatrixString;
 	private Double kappa;
 	private Double errorrate;
 	private Double meanAbsoluteError;
@@ -24,7 +39,16 @@ public class MachineLearningReport implements Serializable {
 	private Double pctIncorrect;
 	private Double numCorrect;
 	private Double numIncorrect;
+	
+	
+//	@OneToMany(mappedBy="report")
+	@ElementCollection
+	@CollectionTable
+	@MapKeyColumn(name="class_name")
 	private Map<String, ClassMeasurementReport> classMeasurements;
+	
+	@ManyToOne
+	private Application application;
 
 	public MachineLearningReport() {
 		this.classMeasurements = new HashMap<String, ClassMeasurementReport>();
@@ -153,6 +177,38 @@ public class MachineLearningReport implements Serializable {
 		this.numIncorrect = numIncorrect;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Map<String, ClassMeasurementReport> getClassMeasurements() {
+		return classMeasurements;
+	}
+
+	public void setClassMeasurements(Map<String, ClassMeasurementReport> classMeasurements) {
+		this.classMeasurements = classMeasurements;
+	}
+	
+	public String getConfusionMatrixString() {
+		return confusionMatrixString;
+	}
+
+	public void setConfusionMatrixString(String confusionMatrixString) {
+		this.confusionMatrixString = confusionMatrixString;
+	}
+
+	public Application getApplication() {
+		return application;
+	}
+
+	public void setApplication(Application application) {
+		this.application = application;
+	}
+	
 	public void addClassMeasurements(Instances instances, Evaluation evaluation) {
 		int numClasses = instances.attribute(instances.classIndex()).numValues();
 		for (int i = 0; i < numClasses; i++) {

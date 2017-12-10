@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Random;
 
+import br.ufpi.loes.oracleTest.common.util.StringUtilConverter;
+import br.ufpi.loes.oracleTest.web.model.MachineLearningReport;
 import weka.classifiers.AbstractClassifier;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
@@ -73,6 +75,7 @@ public class MachineLearning implements Serializable {
 			this.report.setPctCorrect(eval.pctCorrect());
 			this.report.setPctIncorrect(eval.pctIncorrect());
 			this.report.addClassMeasurements(randData, eval);
+			this.report.setConfusionMatrixString(StringUtilConverter.arrayToString(this.report.getConfusionMatrix()));
 //			randData.attribute(randData.classIndex()).enumerateValues();
 
 		} catch (Exception e) {
