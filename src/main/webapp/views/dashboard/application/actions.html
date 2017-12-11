@@ -1,0 +1,66 @@
+	<div class="row">
+		
+		<div class="col-lg-12">
+	        <h1 class="page-header">Actions Application</h1>
+	    </div>
+	    
+	    <div class="col-lg-12">
+	    	<div class="input-group h2">
+				<form ng-submit="list()" class="form">
+					<fieldset>
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="applicationName" placeholder="Application Name" required="" autofocus />
+							<button class="btn btn-primary" type="submit">search actions</button>
+							<button class="btn btn-primary" ng-click="generateInvalideActions()">Invalid Actions</button>
+						</div>
+					</fieldset>
+				</form>
+	    	</div>
+	    </div>
+	</div> <!-- .row -->
+	
+	<div class="row">
+		 
+		 <div class="col-lg-auto">
+		 	<div class="panel panel-default">
+		 		<div class="panel-heading">
+		        	Actions
+				</div>
+				
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+					 			<tr>
+					 				<th>ID</th>
+					 				<th>ActionType</th>
+					 				<th>Tag</th>
+					 				<th>URL</th>
+					 				<th>Elements Visible</th>
+					 				<th>Oracle Url</th>
+					 				<th>Oracle Veredict</th>
+					 			</tr>
+					 		</thead>
+					 		
+					 		<tbody>
+					 			<tr ng-repeat="action in actions">
+					 				<td><strong>{{action.id}}</strong></td>
+					 				<td>{{action.sActionType}}</td>
+					 				<td>{{action.sTagIndex}}</td>
+					 				<td>{{action.sUrl}}</td>
+					 				<td>{{action.sOracleVisibleElements}}</td>
+					 				<td>{{action.sOracleUrl}}</td>
+					 				<td>{{action.sOracleVeredict}}</td>
+					 			</tr>
+					 		</tbody>
+						</table>
+					</div>
+				</div>
+		 	</div>
+		 </div>
+		 
+	</div> <!-- /#list -->
+	
+	<div class="row">
+     
+	</div> <!-- /#bottom -->
