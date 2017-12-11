@@ -12,7 +12,7 @@ app.controller('UserController', function($scope, $rootScope, $stateParams,
 				$scope.error = '';
 				$scope.email = '';
 				$scope.password = '';
-				$state.go('application', {}, {reload: true})
+				$state.go('dashboard.home', {}, {reload: true})
 			}).catch(function(err){
 				$scope.error = "Incorrect username/password !";
 			});
