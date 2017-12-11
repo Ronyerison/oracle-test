@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.ufpi.loes.oracleTest.web.exceptions.OracleException;
 import br.ufpi.loes.oracleTest.web.model.Application;
@@ -72,6 +73,17 @@ public class ApplicationDao implements Serializable{
 			Application application = em.find(Application.class, id);
 			em.remove(application);
 			return application;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Application getApplicationByName(String name) {
+		try {
+			TypedQuery<Application> query = em.createQuery("Select a from Application a where a.name like lower(:name)", Application.class);
+			query.setParameter("name", "%" + name + "%");
+			return query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
