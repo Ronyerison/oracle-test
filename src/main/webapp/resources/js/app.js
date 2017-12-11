@@ -6,14 +6,14 @@ app.run(function($rootScope, $location, $state, LoginService) {
 			fromState, fromParams) {
 		console.log('Changed state to: ' + toState);
 		
-		if(toState.name === 'login'){
+		if(toState.name === 'main.login'){
 			console.log('Entrou no login');
 			return;
 		}
 		console.log(LoginService.isAuthenticated());
 		if (LoginService.isAuthenticated() === false) {
 			console.log('Entrou na verificacao');
-			$state.transitionTo('login');
+			$state.transitionTo('main.login');
 			event.preventDefault();
 		}
 		console.log('Passou direto!');
@@ -32,36 +32,74 @@ app.config([
 
 			$locationProvider.html5Mode(false);
 
-			$urlRouterProvider.otherwise('login');
+			$urlRouterProvider.otherwise('main');
 
-			$stateProvider.state('todo', {
-				url : '/',
-				templateUrl : 'views/index.jsp',
-				controller : 'TodoController'
-			}).state('list', {
-				url : '/list',
-				templateUrl : 'views/list.jsp',
-				controller : 'TodoController'
-			}).state('application', {
-				url : '/application',
+			$stateProvider.state('main', {
+				url : '/main',
 				views : {
 					'' : {
-						templateUrl : 'views/application.html',
-						controller : 'ApplicationController'
+						templateUrl : 'views/index.html'
 					},
-					'header-view@application' : {
-						templateUrl : 'views/partials/menu.html',
+					'header-view@main' : {
+						controller : '',
+						templateUrl : 'views/partials/header.html'
+					},
+					'footer-view@main' : {
+						controller : '',
+						templateUrl : 'views/partials/footer.html'
+					}
+				}
+			}).state('main.login', {
+				url : '/login',
+				views : {
+					'' : {
+						controller : 'UserController',
+						templateUrl : 'views/login.html'
+					}
+				}
+			}).state('dashboard', {
+				url : '/dashboard',
+				views : {
+					'' : {
+						templateUrl : 'views/dashboard/main.html'
+					},
+					'header-view@dashboard' : {
+						templateUrl : 'views/partials/menuDashboard.html',
 						controller : 'UserController'
 					}
 				}
-			}).state('login', {
-				url : '/login',
-				templateUrl : 'views/login.html',
-				controller : 'UserController'
-			}).state('action', {
-				url : '/actions',
-				templateUrl : 'views/listActions.html',
-				controller : 'ActionController'
+			}).state('dashboard.home', {
+				url : '/home',
+				views : {
+					'' : {
+						controller : 'ApplicationController',
+						templateUrl : 'views/dashboard/home.html'
+					}
+				}
+			}).state('dashboard.register-application', {
+				url : '/application/register',
+				views : {
+					'' : {
+						controller : 'ApplicationController',
+						templateUrl : 'views/dashboard/application/register.html'
+					}
+				}
+			}).state('dashboard.list-application', {
+				url : '/applications/list-applications',
+				views : {
+					'' : {
+						controller : 'ApplicationController',
+						templateUrl : 'views/dashboard/application/listApp.html'
+					}
+				}
+			}).state('dashboard.actions-application', {
+				url : '/applications/application/actions',
+				views : {
+					'' : {
+						controller : 'ActionController',
+						templateUrl : 'views/dashboard/application/actions.html'
+					}
+				}
 			});
 
 			// Enable cross domain calls
