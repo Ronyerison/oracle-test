@@ -25,6 +25,7 @@ app.controller('UserController', function($scope, $rootScope, $stateParams,
 	$scope.logout = function() {
 		$scope.userInfo = null;
 		$cookieStore.remove("userInfo");
+		$state.go('main.home', {}, {reload: true})
 	}
 
 });
