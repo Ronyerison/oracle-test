@@ -11,19 +11,8 @@
 <script type="text/javascript" src="resources/lib/angular/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="resources/lib/angular/angular-resource.min.js"></script>
 <script type="text/javascript" src="resources/lib/angular/angular-cookies.min.js"></script>
-<script type="text/javascript" src="resources/lib/bootstrap/bootstrap.js"></script>
-<script type="text/javascript" src="resources/lib/metisMenu/metisMenu.min.js"></script>
-<script type="text/javascript" src="resources/lib/sb-admin-2/sb-admin-2.js"></script>
 
 <script type="text/javascript" src="resources/js/app.js"></script>
-
-<link rel="stylesheet" type="text/css" href="resources/lib/bootstrap/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="resources/css/app.css">
-<link rel="stylesheet" type="text/css" href="resources/lib/sb-admin-2/sb-admin-2.css">
-<link rel="stylesheet" type="text/css" href="resources/lib/metisMenu/metisMenu.min.css" >
-<link rel="stylesheet" type="text/css" href="resources/lib/font-awesome/css/font-awesome.min.css" >
-
-
 
 <!-- ######################### CONTROLLERS #########################-->
 <script type="text/javascript" src="resources/js/controllers/TodoController.js"></script>
@@ -41,7 +30,7 @@
 
 </head>
 
-<body ng-app="oracle-test">
-	<div ui-view></div>
+<body ng-app="oracle-test" id="page-top" ui-view>
+
 </body>
 </html>
