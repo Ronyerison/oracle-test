@@ -1,3 +1,4 @@
+var isPrivaty = false;
 var app = angular.module("oracle-test", [ 'ngResource', 'ui.router',
 		'ngCookies' ]);
 
@@ -10,8 +11,14 @@ app.run(function($rootScope, $location, $state, LoginService) {
 			console.log('Entrou no login');
 			return;
 		}
+		
+		if(toState.name === 'dashboard') {
+			isPrivaty = true;
+		} else {
+			isPrivaty = false;
+		}
 		console.log(LoginService.isAuthenticated());
-		if (LoginService.isAuthenticated() === false) {
+		if (LoginService.isAuthenticated() === false && isPrivaty) {
 			console.log('Entrou na verificacao');
 			$state.transitionTo('main.login');
 			event.preventDefault();
@@ -32,7 +39,7 @@ app.config([
 
 			$locationProvider.html5Mode(false);
 
-			$urlRouterProvider.otherwise('main');
+			$urlRouterProvider.otherwise('/main/home');
 
 			$stateProvider.state('main', {
 				url : '/main',
@@ -49,12 +56,20 @@ app.config([
 						templateUrl : 'views/partials/footer.html'
 					}
 				}
+			}).state('main.home', {
+				url : '/home',
+				views : {
+					'' : {
+						controller : 'UserController',
+						templateUrl : 'views/partials/home.html'
+					}
+				}
 			}).state('main.login', {
 				url : '/login',
 				views : {
 					'' : {
 						controller : 'UserController',
-						templateUrl : 'views/login.html'
+						templateUrl : 'views/partials/login.html'
 					}
 				}
 			}).state('dashboard', {
@@ -64,7 +79,7 @@ app.config([
 						templateUrl : 'views/dashboard/main.html'
 					},
 					'header-view@dashboard' : {
-						templateUrl : 'views/partials/menuDashboard.html',
+						templateUrl : 'views/partials/menu.html',
 						controller : 'UserController'
 					}
 				}
