@@ -7,6 +7,10 @@ angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieSt
 		return isLogged;
 	}
 	
+	function add(user) {
+		$http.post("http://localhost:8080/oracle-test/backend/users", JSON.stringify(user));
+	}
+	
 	function login(email, password) {
 		var deferred = $q.defer();
 		var user = {
@@ -35,7 +39,7 @@ angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieSt
 			});
 		
 		return deferred.promise;
-	};
+	}
 	
 	function getUserInfo(){
 		return userInfo;
@@ -43,6 +47,7 @@ angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieSt
 	
 	return{
 		login: login,
+		addUser: add,
 		isAuthenticated: isAuthenticated,
 		userInfo: getUserInfo
 	};
