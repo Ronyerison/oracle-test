@@ -1,18 +1,19 @@
 package br.ufpi.loes.oracleTest.web.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import weka.classifiers.Evaluation;
@@ -26,6 +27,7 @@ public class MachineLearningReport implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String algorithmName;
+	@Transient
 	private String evaluation;
 	private String classifierOptions;
 	private Integer folds;
@@ -41,17 +43,18 @@ public class MachineLearningReport implements Serializable {
 	private Double numIncorrect;
 	
 	
-//	@OneToMany(mappedBy="report")
-	@ElementCollection
-	@CollectionTable
-	@MapKeyColumn(name="class_name")
-	private Map<String, ClassMeasurementReport> classMeasurements;
+	
+//	@ElementCollection
+//	@CollectionTable
+//	@MapKeyColumn(name="class_name")
+	@OneToMany(mappedBy="report", cascade=CascadeType.ALL)
+	private List<ClassMeasurementReport> classMeasurements;
 	
 	@ManyToOne
 	private Application application;
 
 	public MachineLearningReport() {
-		this.classMeasurements = new HashMap<String, ClassMeasurementReport>();
+		this.classMeasurements = new ArrayList<ClassMeasurementReport>();
 	}
 
 	public MachineLearningReport(String algorithmName, String evaluation, String classifierOptions, Integer folds,
@@ -70,7 +73,7 @@ public class MachineLearningReport implements Serializable {
 		this.pctIncorrect = pctIncorrect;
 		this.numCorrect = numCorrect;
 		this.numIncorrect = numIncorrect;
-		this.classMeasurements = new HashMap<String, ClassMeasurementReport>();
+		this.classMeasurements = new ArrayList<ClassMeasurementReport>();
 	}
 
 	public MachineLearningReport(String algorithmName, String evaluation, String classifierOptions, Integer folds) {
@@ -185,11 +188,11 @@ public class MachineLearningReport implements Serializable {
 		this.id = id;
 	}
 
-	public Map<String, ClassMeasurementReport> getClassMeasurements() {
+	public List<ClassMeasurementReport> getClassMeasurements() {
 		return classMeasurements;
 	}
 
-	public void setClassMeasurements(Map<String, ClassMeasurementReport> classMeasurements) {
+	public void setClassMeasurements(List<ClassMeasurementReport> classMeasurements) {
 		this.classMeasurements = classMeasurements;
 	}
 	
@@ -216,7 +219,9 @@ public class MachineLearningReport implements Serializable {
 					evaluation.fMeasure(i), evaluation.areaUnderPRC(i), evaluation.recall(i), evaluation.falseNegativeRate(i), evaluation.falsePositiveRate(i),
 					evaluation.numFalseNegatives(i), evaluation.numFalsePositives(i), evaluation.trueNegativeRate(i), evaluation.truePositiveRate(i), evaluation.numTrueNegatives(i),
 					evaluation.numTruePositives(i));
-			this.classMeasurements.put(instances.attribute(instances.classIndex()).value(i), measurement);
+			measurement.setClassName(instances.attribute(instances.classIndex()).value(i));
+			
+			this.classMeasurements.add(measurement);
 		}
 
 	}

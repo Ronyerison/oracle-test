@@ -2,11 +2,21 @@ package br.ufpi.loes.oracleTest.web.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class ClassMeasurementReport implements Serializable{
 	
 	private static final long serialVersionUID = -8310473962793200876L;
 	
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	private String className;
 	private Double precision;
 	private Double fMeasure;
 	private Double areaUnderROC;
@@ -20,6 +30,8 @@ public class ClassMeasurementReport implements Serializable{
 	private Double numTrueNegative;
 	private Double numTruePositive;
 	
+	@ManyToOne
+	private MachineLearningReport report;
 	
 	public ClassMeasurementReport() {
 	}
@@ -114,7 +126,29 @@ public class ClassMeasurementReport implements Serializable{
 	public void setNumTruePositive(Double numTruePositive) {
 		this.numTruePositive = numTruePositive;
 	}
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public MachineLearningReport getReport() {
+		return report;
+	}
+
+	public void setReport(MachineLearningReport report) {
+		this.report = report;
+	}
 
 
 	
