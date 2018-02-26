@@ -115,7 +115,15 @@ app.config([
 						templateUrl : 'views/dashboard/application/actions.html'
 					}
 				}
-			});
+			})/*.statte('dashboard.actions-repoart', {
+				url: '/applications/repoart/{application}',
+				views : {
+					'' : {
+						controller : 'ActionController',
+						templateUrl : 'views/dashboard/application/repoart.html'
+					}
+				}
+			})*/;
 
 			// Enable cross domain calls
 			$httpProvider.defaults.useXDomain = true;
