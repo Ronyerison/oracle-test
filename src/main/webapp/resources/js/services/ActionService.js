@@ -5,7 +5,7 @@ angular.module("oracle-test").service("ActionService", ["$http", '$q', "$cookieS
 	};
 	
 	function generateInvalideActions(applicationName) {
-		$http.get("http://localhost:8080/oracle-test/backend/actions/simulation/"+applicationName);
+		$http.get("http://localhost:8080/oracle-test/backend/actions/preparateActions/"+applicationName);
 		
 		return listActions(applicationName);
 	}
