@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 
 import br.ufpi.loes.oracleTest.web.exceptions.OracleException;
 import br.ufpi.loes.oracleTest.web.model.Application;
+import br.ufpi.loes.oracleTest.web.model.User;
 
 /**
  * @author Ronyerison
@@ -48,9 +49,14 @@ public class ApplicationDao implements Serializable{
 
 	public Application create(Application application) throws Exception{
 //		application.setId(new Random().nextLong());
+		
 		try {
-			return em.merge(application);
+			TypedQuery<User> query = em.createQuery("select u from User u where u.email like :email", User.class);
+			query.setParameter("email", '%'+application.getOwner().getEmail()+'%');
+			User user = query.getSingleResult();
+			application.setOwner(user);
 			
+			return em.merge(application);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new OracleException("Problema ao Salvar Aplicação");
