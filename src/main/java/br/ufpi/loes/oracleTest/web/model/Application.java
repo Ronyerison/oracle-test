@@ -96,6 +96,10 @@ public class Application implements Serializable{
 	public void setReports(List<MachineLearningReport> reports) {
 		this.reports = reports;
 	}
+	@Override
+	public String toString() {
+		return "Application [id=" + id + ", name=" + name + ", url=" + url + ", owner=" + owner + "]";
+	}
 	
 	
 

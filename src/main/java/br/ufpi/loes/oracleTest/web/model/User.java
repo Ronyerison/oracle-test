@@ -104,4 +104,10 @@ public class User implements Serializable {
 		this.recoveryCode = recoveryCode;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", recoveryCode=" + recoveryCode
+				+ ", email=" + email + ", name=" + name + "]";
+	}
+
 }
