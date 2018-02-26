@@ -75,8 +75,25 @@ public class ActionsController extends BaseController{
 		result.use(Results.json()).withoutRoot().from(actionsDao.findActionsByApplication(applicationName)).serialize();
 
 	}
+	
+	/**
+	 * 
+	 * @param applicationName
+	 */
+//	@Get("/preparateActions/{applicationName}")
+	/*public void preparateActions(String applicationName) {
+		System.out.println(applicationName);
+		try {
+			dataPreparation.preparateActions(applicationName);
+			addSucessMessage("Ações preparadas para execulção da simulação!");
+		} catch (Exception e) {
+			addErrorMessage("Erro ao preparar as ações para execulção da simulação!");
+			e.printStackTrace();
+		}
+	}*/
 
-	@Get("/simulation/{applicationName}")
+//	@Get("/simulation/{applicationName}")
+	@Get("/preparateActions/{applicationName}")
 	public void executeMethod(String applicationName) {
 		try {
 			dataPreparation.preparateActions(applicationName);

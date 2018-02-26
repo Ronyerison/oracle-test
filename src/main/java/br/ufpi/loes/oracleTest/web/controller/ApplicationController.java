@@ -50,6 +50,7 @@ public class ApplicationController extends BaseController{
 	@Post("")
 	public void create(Application application) {
 		try {
+			System.out.println(application.toString());
 			applicationDao.create(application);
 			addSucessMessage("Aplicação Salva com sucesso!");
 			result.use(Results.json()).withoutRoot()
