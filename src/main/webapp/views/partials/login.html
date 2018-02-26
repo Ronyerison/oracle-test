@@ -1,21 +1,22 @@
 <section id="login">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">
-				<div class="login-panel panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Please Sign In</h3>
-					</div>
-					<div class="panel-body">
-						<form ng-submit="login()" class="form">
+			<div class="panel panel-default">
+				<form ng-submit="login()" class="form">
+					<div class="col-md-4">
+						<div class="panel-heading">
+							<h3 class="panel-title">Please Sign In</h3>						
+						</div>
+						
+						<div class="panel-body">
 							<fieldset>
 								<div class="form-group">
-									<input type="text" class="form-control" ng-model="email"
-										placeholder="email" required="" autofocus />
+									<input type="text" class="form-control" ng-model="email" placeholder="email" autofocus />
 								</div>
+								
 								<div class="form-group">
 									<input type="password" class="form-control" ng-model="password"
-										placeholder="password" required="" />
+										placeholder="password" />
 								</div>
 	
 								<div class="form-group row">
@@ -28,51 +29,118 @@
 										<span class="text-danger">{{ error }}</span>
 									</div>
 								</div>
-	
 							</fieldset>
-						</form>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-8">
-				<div class="login-panel panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"> Register An Account</h3>
+						</div>	
 					</div>
 					
-					<div class="panel-body">
-						<form class="form" ng-submit="add()">
+					<div class="col-md-8">
+						<div class="panel-heading">
+							<h3 class="panel-title"> Register An Account</h3>
+						</div>
+						
+						<div class="panel-body">
 							<fieldset>
 								<div class="form-group row">
 									<div class="col-md-6">
-										<input type="text" class="form-control" ng-model="user.name" placeholder="Name" required="" autofocus />
+										<input type="text" class="form-control" ng-model="user.name" placeholder="Name" autofocus />
 									</div>
 									
 									<div class="col-md-6">
-										<input type="text" class="form-control" ng-model="user.email" placeholder="E-mail Address" required="" />
+										<input type="text" class="form-control" ng-model="user.email" placeholder="E-mail Address"  />
 									</div>
 								</div>
 								
 								<div class="form-group row">
 									<div class="col-md-6">
-										<input type="password" class="form-control" ng-model="user.password" placeholder="Password" required="" />
+										<input type="password" class="form-control" ng-model="user.password" placeholder="Password" />
 									</div>
 									
 									<div class="col-md-6">
-										<input type="password" class="form-control" ng-model="re_password" placeholder="Re-Enter Password" required="" />
+										<input type="password" class="form-control" ng-model="re_password" placeholder="Re-Enter Password" />
 									</div>
 								</div>
 								
 								<div class="form-group">
-									<button type="submit" class="btn btn-lg btn-second pull-right">Register</button>
+									<button class="btn btn-lg btn-second pull-right" ng-click="add()">Register</button>
 									<span class="text-danger">{{ error_register }}</span>
 								</div>
 							</fieldset>
-						</form>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
+<!-- 			<div class="col-md-4"> -->
+<!-- 				<div class="login-panel panel panel-default"> -->
+<!-- 					<div class="panel-heading"> -->
+<!-- 						<h3 class="panel-title">Please Sign In</h3> -->
+<!-- 					</div> -->
+<!-- 					<div class="panel-body"> -->
+<!-- 						<form ng-submit="login()" class="form"> -->
+<!-- 							<fieldset> -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<input type="text" class="form-control" ng-model="email" -->
+<!-- 										placeholder="email" required="" autofocus /> -->
+<!-- 								</div> -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<input type="password" class="form-control" ng-model="password" -->
+<!-- 										placeholder="password" required="" /> -->
+<!-- 								</div> -->
+	
+<!-- 								<div class="form-group row"> -->
+<!-- 									<div class="col-md-12"> -->
+<!-- 										<div class="checkbox pull-left"> -->
+<!-- 											<label> <input name="remember" type="checkbox" value="Remember Me">Remember Me</label> -->
+<!-- 										</div> -->
+										
+<!-- 										<button type="submit" class="btn btn-lg btn-primary pull-right">Login</button>	 -->
+<!-- 										<span class="text-danger">{{ error }}</span> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+	
+<!-- 							</fieldset> -->
+<!-- 						</form> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-md-8"> -->
+<!-- 				<div class="panel panel-default"> -->
+<!-- 					<div class="panel-heading"> -->
+<!-- 						<h3 class="panel-title"> Register An Account</h3> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="panel-body"> -->
+<!-- 						<form class="form" ng-submit="register()"> -->
+<!-- 							<fieldset> -->
+<!-- 								<div class="form-group row"> -->
+<!-- 									<div class="col-md-6"> -->
+<!-- 										<input type="text" class="form-control" ng-model="user.name" placeholder="Name" required="" autofocus /> -->
+<!-- 									</div> -->
+									
+<!-- 									<div class="col-md-6"> -->
+<!-- 										<input type="text" class="form-control" ng-model="user.email" placeholder="E-mail Address" required="" /> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+								
+<!-- 								<div class="form-group row"> -->
+<!-- 									<div class="col-md-6"> -->
+<!-- 										<input type="password" class="form-control" ng-model="user.password" placeholder="Password" required="" /> -->
+<!-- 									</div> -->
+									
+<!-- 									<div class="col-md-6"> -->
+<!-- 										<input type="password" class="form-control" ng-model="re_password" placeholder="Re-Enter Password" required="" /> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+								
+<!-- 								<div class="form-group"> -->
+<!-- 									<button type="submit" class="btn btn-lg btn-second pull-right">Register</button> -->
+<!-- 									<span class="text-danger">{{ error_register }}</span> -->
+<!-- 								</div> -->
+<!-- 							</fieldset> -->
+<!-- 						</form> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		</div>
 	</div>
 </section>
