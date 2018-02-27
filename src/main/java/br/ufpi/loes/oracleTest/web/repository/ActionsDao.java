@@ -29,7 +29,7 @@ public class ActionsDao implements Serializable{
 		try {
 			for (Action action : actions) {
 				action.setApplication(applicationDao.getApplicationByName(action.getsClient()));
-				em.merge(new Action(action));
+				em.persist(new Action(action));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

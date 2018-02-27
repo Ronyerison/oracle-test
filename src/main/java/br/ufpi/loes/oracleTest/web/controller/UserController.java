@@ -39,7 +39,7 @@ public class UserController {
 
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post(value = {"", "/"})
-	public void add(User user, String repassword) {
+	public void add(User user) {
 		if (!userDao.containsUserWithEMail(user.getEmail())) {
 			userDao.insert(user);
 		}

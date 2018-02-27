@@ -7,6 +7,7 @@
 		<class>br.ufpi.loes.oracleTest.web.model.User</class>
 		<class>br.ufpi.loes.oracleTest.web.model.Application</class>
 		<class>br.ufpi.loes.oracleTest.web.model.Action</class>
+		<class>br.ufpi.loes.oracleTest.web.model.ClassMeasurementReport</class>
 		<class>br.ufpi.loes.oracleTest.web.model.MachineLearningReport</class>
 
 		<properties>

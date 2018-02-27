@@ -896,7 +896,20 @@ try {
 				} else {
 					var arr = getAcoes();
 					if (Array.isArray(arr)) {
-						// ORÁCULO
+						if (acao.sActionType === actionCapt.BROWSER_ONLOAD) {
+							for (var i = arr.length-1; i >= 0; i--) {
+								if (arr[i].sActionType === actionCapt.CLICK ||
+										arr[i].sActionType === actionCapt.DBLCLICK ||
+										arr[i].sActionType === actionCapt.BROWSER_FORM_SUBMIT) {
+									arr[i].sOracleUrl = acao.sUrl;
+									arr[i].sOracleVisibleElements = acao.sOracleVisibleElements;
+									break;
+								}
+							}
+						}
+						
+						// ORACULO
+						/*
 						if (arr.length) {
 							var ultimaAcao = arr[arr.length - 1];
 							ultimaAcao.sOracleUrl = acao.sUrl;
@@ -906,10 +919,9 @@ try {
 									|| acao.sActionType === actionCapt.BROWSER_ONLOAD) {
 
 								ultimaAcao.sOracleVisibleElements = acao.sOracleVisibleElements;
-								console
-										.log(arr[arr.length - 1].sOracleVisibleElements);
 							}
 						}
+						*/
 						arr.push(acao);
 					} else {
 						arr = [ acao ];

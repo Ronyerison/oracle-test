@@ -11,6 +11,7 @@
 angular.module("oracle-test").factory("ApplicationService", ["$http", "$q", "$cookieStore", function($http, $q, $cookieStore){
 	
 	function addApplication(application){
+		console.log(application);
 		return $http.post("http://localhost:8080/oracle-test/backend/application", JSON.stringify(application));
 	}
 	

@@ -12,22 +12,24 @@
 			</div> <!-- .panel-heading -->
 			
 			<div class="panel-body">
-				<input class="form-control" ng-model="application.name" id="title-app" placeholder="Application Name" autofocus>
-				<input class="form-control" ng-model="application.url" id="url-app" placeholder="Application Url">
-				<div class="checkbox">
-					<label> <input type="checkbox" ng-model="application.hasTestUser">Requires test user</label>
-				</div>
-				<input class="form-control" ng-model="application.loginUser" ng-show="application.hasTestUser" id="url-app" placeholder="Test user">
-				<input class="form-control" type="password" ng-model="application.passwordUser" ng-show="application.hasTestUser" id="url-app" placeholder="Test user password">
-				
-				<button class="btn btn-primary btn-block" type="submit">Save</button>
-				
-				<div class="form-control ">
-					<a ui-sref="todo" class="btn btn-primary pull-right">NEW TODO</a>
-					<a ui-sref="list" class="btn btn-primary">TODOS</a>
-				</div>
+				<form ng-submit="add()" class="form">
+					<input class="form-control" ng-model="application.name" id="title-app" placeholder="Application Name" autofocus>
+					<input class="form-control" ng-model="application.url" id="url-app" placeholder="Application Url">
+					<div class="checkbox">
+						<label> <input type="checkbox" ng-model="application.hasTestUser">Requires test user</label>
+					</div>
+					<input class="form-control" ng-model="application.loginUser" ng-show="application.hasTestUser" id="login-user" placeholder="Test user">
+					<input class="form-control" type="password" ng-model="application.passwordUser" ng-show="application.hasTestUser" id="password-user" placeholder="Test user password">
+					
+					<button class="btn btn-primary btn-block" type="submit">Save</button>
+					
+<!-- 					<div class="form-control "> -->
+<!-- 						<a ui-sref="todo" class="btn btn-primary pull-right">NEW TODO</a> -->
+<!-- 						<a ui-sref="list" class="btn btn-primary">TODOS</a> -->
+<!-- 					</div> -->
+				</form>
 			</div>
-			{{application}}
+<!-- 			{{application}} -->
 		</div> <!-- .panel panel-default -->			
 	</div> <!-- .col-lg-6 -->
 </div>
