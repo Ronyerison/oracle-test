@@ -1,11 +1,8 @@
 package br.ufpi.loes.oracleTest.web.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -42,11 +39,6 @@ public class MachineLearningReport implements Serializable {
 	private Double numCorrect;
 	private Double numIncorrect;
 	
-	
-	
-//	@ElementCollection
-//	@CollectionTable
-//	@MapKeyColumn(name="class_name")
 	@OneToMany(mappedBy="report", cascade=CascadeType.ALL)
 	private List<ClassMeasurementReport> classMeasurements;
 	
@@ -54,34 +46,6 @@ public class MachineLearningReport implements Serializable {
 	private Application application;
 
 	public MachineLearningReport() {
-		this.classMeasurements = new ArrayList<ClassMeasurementReport>();
-	}
-
-	public MachineLearningReport(String algorithmName, String evaluation, String classifierOptions, Integer folds,
-			Integer seed, double[][] confusionMatrix, Double kappa, Double errorrate, Double meanAbsoluteError,
-			Double pctCorrect, Double pctIncorrect, Double numCorrect, Double numIncorrect) {
-		super();
-		this.algorithmName = algorithmName;
-		this.evaluation = evaluation;
-		this.classifierOptions = classifierOptions;
-		this.folds = folds;
-		this.confusionMatrix = confusionMatrix;
-		this.kappa = kappa;
-		this.errorrate = errorrate;
-		this.meanAbsoluteError = meanAbsoluteError;
-		this.pctCorrect = pctCorrect;
-		this.pctIncorrect = pctIncorrect;
-		this.numCorrect = numCorrect;
-		this.numIncorrect = numIncorrect;
-		this.classMeasurements = new ArrayList<ClassMeasurementReport>();
-	}
-
-	public MachineLearningReport(String algorithmName, String evaluation, String classifierOptions, Integer folds) {
-		super();
-		this.algorithmName = algorithmName;
-		this.evaluation = evaluation;
-		this.classifierOptions = classifierOptions;
-		this.folds = folds;
 	}
 
 	public String getAlgorithmName() {

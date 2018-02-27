@@ -17,7 +17,7 @@ public class ClassMeasurementReport implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String className;
-	private Double precision;
+	private Double precisionRate;
 	private Double fMeasure;
 	private Double areaUnderROC;
 	private Double recall;
@@ -36,11 +36,12 @@ public class ClassMeasurementReport implements Serializable{
 	public ClassMeasurementReport() {
 	}
 	
-	public ClassMeasurementReport(Double precision, Double fMeasure, Double areaUnderROC, Double recall,
+	
+	public ClassMeasurementReport(Double precisionRate, Double fMeasure, Double areaUnderROC, Double recall,
 			Double falseNegativeRate, Double falsePositiveRate, Double numFalseNegative, Double numFalsePositive,
 			Double trueNegativeRate, Double truePositiveRate, Double numTrueNegative, Double numTruePositive) {
 		super();
-		this.precision = precision;
+		this.precisionRate = precisionRate;
 		this.fMeasure = fMeasure;
 		this.areaUnderROC = areaUnderROC;
 		this.recall = recall;
@@ -54,78 +55,6 @@ public class ClassMeasurementReport implements Serializable{
 		this.numTruePositive = numTruePositive;
 	}
 
-	public Double getPrecision() {
-		return precision;
-	}
-	public void setPrecision(Double precision) {
-		this.precision = precision;
-	}
-	public Double getfMeasure() {
-		return fMeasure;
-	}
-	public void setfMeasure(Double fMeasure) {
-		this.fMeasure = fMeasure;
-	}
-	public Double getAreaUnderROC() {
-		return areaUnderROC;
-	}
-	public void setAreaUnderROC(Double areaUnderROC) {
-		this.areaUnderROC = areaUnderROC;
-	}
-	public Double getRecall() {
-		return recall;
-	}
-	public void setRecall(Double recall) {
-		this.recall = recall;
-	}
-	public Double getFalseNegativeRate() {
-		return falseNegativeRate;
-	}
-	public void setFalseNegativeRate(Double falseNegativeRate) {
-		this.falseNegativeRate = falseNegativeRate;
-	}
-	public Double getFalsePositiveRate() {
-		return falsePositiveRate;
-	}
-	public void setFalsePositiveRate(Double falsePositiveRate) {
-		this.falsePositiveRate = falsePositiveRate;
-	}
-	public Double getNumFalseNegative() {
-		return numFalseNegative;
-	}
-	public void setNumFalseNegative(Double numFalseNegative) {
-		this.numFalseNegative = numFalseNegative;
-	}
-	public Double getNumFalsePositive() {
-		return numFalsePositive;
-	}
-	public void setNumFalsePositive(Double numFalsePositive) {
-		this.numFalsePositive = numFalsePositive;
-	}
-	public Double getTrueNegativeRate() {
-		return trueNegativeRate;
-	}
-	public void setTrueNegativeRate(Double trueNegativeRate) {
-		this.trueNegativeRate = trueNegativeRate;
-	}
-	public Double getTruePositiveRate() {
-		return truePositiveRate;
-	}
-	public void setTruePositiveRate(Double truePositiveRate) {
-		this.truePositiveRate = truePositiveRate;
-	}
-	public Double getNumTrueNegative() {
-		return numTrueNegative;
-	}
-	public void setNumTrueNegative(Double numTrueNegative) {
-		this.numTrueNegative = numTrueNegative;
-	}
-	public Double getNumTruePositive() {
-		return numTruePositive;
-	}
-	public void setNumTruePositive(Double numTruePositive) {
-		this.numTruePositive = numTruePositive;
-	}
 	public Long getId() {
 		return id;
 	}
@@ -142,6 +71,102 @@ public class ClassMeasurementReport implements Serializable{
 		this.className = className;
 	}
 
+	public Double getfMeasure() {
+		return fMeasure;
+	}
+
+	public void setfMeasure(Double fMeasure) {
+		this.fMeasure = fMeasure;
+	}
+
+	public Double getAreaUnderROC() {
+		return areaUnderROC;
+	}
+
+	public void setAreaUnderROC(Double areaUnderROC) {
+		this.areaUnderROC = areaUnderROC;
+	}
+
+	public Double getRecall() {
+		return recall;
+	}
+
+	public void setRecall(Double recall) {
+		this.recall = recall;
+	}
+	
+	public Double getPrecisionRate() {
+		return precisionRate;
+	}
+
+	public void setPrecisionRate(Double precisionRate) {
+		this.precisionRate = precisionRate;
+	}
+
+	public Double getFalseNegativeRate() {
+		return falseNegativeRate;
+	}
+
+	public void setFalseNegativeRate(Double falseNegativeRate) {
+		this.falseNegativeRate = falseNegativeRate;
+	}
+
+	public Double getFalsePositiveRate() {
+		return falsePositiveRate;
+	}
+
+	public void setFalsePositiveRate(Double falsePositiveRate) {
+		this.falsePositiveRate = falsePositiveRate;
+	}
+
+	public Double getNumFalseNegative() {
+		return numFalseNegative;
+	}
+
+	public void setNumFalseNegative(Double numFalseNegative) {
+		this.numFalseNegative = numFalseNegative;
+	}
+
+	public Double getNumFalsePositive() {
+		return numFalsePositive;
+	}
+
+	public void setNumFalsePositive(Double numFalsePositive) {
+		this.numFalsePositive = numFalsePositive;
+	}
+
+	public Double getTrueNegativeRate() {
+		return trueNegativeRate;
+	}
+
+	public void setTrueNegativeRate(Double trueNegativeRate) {
+		this.trueNegativeRate = trueNegativeRate;
+	}
+
+	public Double getTruePositiveRate() {
+		return truePositiveRate;
+	}
+
+	public void setTruePositiveRate(Double truePositiveRate) {
+		this.truePositiveRate = truePositiveRate;
+	}
+
+	public Double getNumTrueNegative() {
+		return numTrueNegative;
+	}
+
+	public void setNumTrueNegative(Double numTrueNegative) {
+		this.numTrueNegative = numTrueNegative;
+	}
+
+	public Double getNumTruePositive() {
+		return numTruePositive;
+	}
+
+	public void setNumTruePositive(Double numTruePositive) {
+		this.numTruePositive = numTruePositive;
+	}
+
 	public MachineLearningReport getReport() {
 		return report;
 	}
@@ -150,19 +175,17 @@ public class ClassMeasurementReport implements Serializable{
 		this.report = report;
 	}
 
-
-	
-	
 	@Override
 	public String toString() {
-		return "ClassMeasurementReport [precision=" + precision + ", fMeasure=" + fMeasure + ", areaUnderROC="
-				+ areaUnderROC + ", recall=" + recall + ", falseNegativeRate=" + falseNegativeRate
-				+ ", falsePositiveRate=" + falsePositiveRate + ", numFalseNegative=" + numFalseNegative
-				+ ", numFalsePositive=" + numFalsePositive + ", trueNegativeRate=" + trueNegativeRate
-				+ ", truePositiveRate=" + truePositiveRate + ", numTrueNegative=" + numTrueNegative
-				+ ", numTruePositive=" + numTruePositive + "]";
+		return "ClassMeasurementReport [id=" + id + ", className=" + className + ", precisionRate=" + precisionRate
+				+ ", fMeasure=" + fMeasure + ", areaUnderROC=" + areaUnderROC + ", recall=" + recall
+				+ ", falseNegativeRate=" + falseNegativeRate + ", falsePositiveRate=" + falsePositiveRate
+				+ ", numFalseNegative=" + numFalseNegative + ", numFalsePositive=" + numFalsePositive
+				+ ", trueNegativeRate=" + trueNegativeRate + ", truePositiveRate=" + truePositiveRate
+				+ ", numTrueNegative=" + numTrueNegative + ", numTruePositive=" + numTruePositive + ", report=" + report
+				+ "]";
 	}
-	
+
 	
 	
 }
