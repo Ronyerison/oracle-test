@@ -1,6 +1,7 @@
 package br.ufpi.loes.oracleTest.web.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class MachineLearningReport implements Serializable {
 	private Application application;
 
 	public MachineLearningReport() {
+		this.classMeasurements =  new ArrayList<ClassMeasurementReport>();
 	}
 
 	public String getAlgorithmName() {
