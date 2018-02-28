@@ -186,7 +186,7 @@ public class MachineLearningReport implements Serializable {
 					evaluation.numFalseNegatives(i), evaluation.numFalsePositives(i), evaluation.trueNegativeRate(i), evaluation.truePositiveRate(i), evaluation.numTrueNegatives(i),
 					evaluation.numTruePositives(i));
 			measurement.setClassName(instances.attribute(instances.classIndex()).value(i));
-			
+			measurement.setReport(this);
 			this.classMeasurements.add(measurement);
 		}
 
@@ -194,14 +194,13 @@ public class MachineLearningReport implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MachineLearningReport [algorithmName=" + algorithmName + ", classifierOptions=" + classifierOptions
-				+ ", folds=" + folds + ", confusionMatrix=" + Arrays.toString(confusionMatrix) + ", kappa=" + kappa
-				+ ", errorrate=" + errorrate + ", meanAbsoluteError=" + meanAbsoluteError + ", pctCorrect=" + pctCorrect
-				+ ", pctIncorrect=" + pctIncorrect + ", numCorrect=" + numCorrect + ", numIncorrect=" + numIncorrect
-				+ ", classMeasurements=" + classMeasurements + "]";
+		return "MachineLearningReport [id=" + id + ", algorithmName=" + algorithmName + ", classifierOptions="
+				+ classifierOptions + ", folds=" + folds + ", confusionMatrixString=" + confusionMatrixString
+				+ ", kappa=" + kappa + ", errorrate=" + errorrate + ", meanAbsoluteError=" + meanAbsoluteError
+				+ ", pctCorrect=" + pctCorrect + ", pctIncorrect=" + pctIncorrect + ", numCorrect=" + numCorrect
+				+ ", numIncorrect=" + numIncorrect + "]";
 	}
+	
+	
 
-	
-	
-	
 }
