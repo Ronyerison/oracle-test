@@ -182,10 +182,9 @@ public class ClassMeasurementReport implements Serializable{
 				+ ", falseNegativeRate=" + falseNegativeRate + ", falsePositiveRate=" + falsePositiveRate
 				+ ", numFalseNegative=" + numFalseNegative + ", numFalsePositive=" + numFalsePositive
 				+ ", trueNegativeRate=" + trueNegativeRate + ", truePositiveRate=" + truePositiveRate
-				+ ", numTrueNegative=" + numTrueNegative + ", numTruePositive=" + numTruePositive + ", report=" + report
-				+ "]";
+				+ ", numTrueNegative=" + numTrueNegative + ", numTruePositive=" + numTruePositive + "]";
 	}
 
-	
+		
 	
 }
