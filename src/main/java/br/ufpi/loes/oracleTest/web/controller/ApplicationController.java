@@ -77,5 +77,12 @@ public class ApplicationController extends BaseController{
 				.from(applicationDao.delete(application.getId())).serialize();
 
 	}
+	
+	@Get("/reports/{application.id}")
+	public void getReportsByApplication(Application application) {
+		result.use(Results.json()).withoutRoot()
+				.from(applicationDao.find(application.getId()).getReports()).serialize();
+
+	}
 
 }

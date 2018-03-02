@@ -34,11 +34,26 @@ public class SimulationController extends BaseController  {
 		this.dataPreparation = dataPreparation;
 	}
 	
-	@Get("/{applicationName}")
+	@Get("/execute/{applicationName}")
 	public void executeMethod(String applicationName) {
-		machineLearning.inicializeInstances(applicationName);
-		machineLearning.inicializeAlgorithm();
-		reportDao.insert(machineLearning.getReport(), applicationName);
-		result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
+		try {
+			machineLearning.inicializeInstances(applicationName);
+			machineLearning.inicializeAlgorithm();
+			reportDao.insert(machineLearning.getReport(), applicationName);
+			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Get("/preparate/{applicationName}")
+	public void preparateActions(String applicationName) {
+		try {
+			dataPreparation.preparateActions(applicationName);
+			addSucessMessage("Dados preparados com sucesso!");
+			result.use(Results.json()).withoutRoot().from(messages).serialize();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

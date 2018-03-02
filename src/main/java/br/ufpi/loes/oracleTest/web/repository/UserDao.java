@@ -36,6 +36,10 @@ public class UserDao extends GenericDao<User> {
 		}
 	}
 	
+	public void delete(Long id) {
+		super.delete(id);
+	}
+	
 	public User find(String login, String password) {
 //		GenerateHashPasswordUtil generateHashPasswordUtil = new GenerateHashPasswordUtil();
 		try {
