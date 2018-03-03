@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Applications Registered</h1>
+        <h1 class="page-header">Aplicacao</h1>
     </div> <!-- .col-lg-12 -->
 </div> <!-- .row -->
 	
@@ -8,10 +8,10 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-	        	Applications
+	        	Aplicacoes Registradas <span class="text-danger">{{ nullApp }}</span>
 			</div>
 			
-			<div class="panel-body">
+			<div class="panel-body" ng-init="list()">
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
@@ -22,10 +22,13 @@
 							</tr>
 						</thead>
 						
-						<tbody ng-repeat="application in applications">
-							<td><strong>{{application.id}}</strong></td>
-							<td>{{application.name}}</td>
-							<td>{{application.url}}</td>
+						<tbody ng-repeat="app in listApplications">
+							<td><strong>{{app.id}}</strong></td>
+							<td>{{app.name}}</td>
+							<td>{{app.url}}</td>
+							<td><button ng-click="" ng-disabled="" class="btn btn-outline-primary">preparar</button></td>
+							<td><button ng-click="" class="btn btn-outline-success">simular</button></td>
+							<dt><td><button ng-click="" class="btn btn-outline-danger">deletar</button></td>
 						</tbody>				
 					</table> <!-- .table table-hover  -->
 				</div> <!-- .table-responsive  -->
