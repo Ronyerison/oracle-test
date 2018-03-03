@@ -103,6 +103,14 @@ public class User implements Serializable {
 	public void setRecoveryCode(String recoveryCode) {
 		this.recoveryCode = recoveryCode;
 	}
+	
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
 
 	@Override
 	public String toString() {

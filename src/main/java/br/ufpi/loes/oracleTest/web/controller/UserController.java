@@ -10,16 +10,18 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
+import br.ufpi.loes.oracleTest.common.controller.BaseController;
 import br.ufpi.loes.oracleTest.web.model.User;
 import br.ufpi.loes.oracleTest.web.model.vo.UserVO;
 import br.ufpi.loes.oracleTest.web.repository.UserDao;
 
 @Controller
 @Path("/backend/users")
-public class UserController {
+public class UserController extends BaseController{
 
 	private final Result result;
 	private final UserDao userDao;
@@ -66,6 +68,20 @@ public class UserController {
 	public void getUsers(){
 		result.use(Results.json()).withoutRoot().from(userDao.findAll())
 		.serialize();
+	}
+	
+	@Get("/applications/{user.id}")
+	public void getApplicationsByUser(User user) {
+		result.use(Results.json()).withoutRoot().from(userDao.find(user.getId()).getApplications())
+		.serialize();
+	}
+	
+	@Consumes(value = "application/json", options = WithoutRoot.class)
+	@Put("")
+	public void update(User user) {
+		result.use(Results.json()).withoutRoot()
+				.from(userDao.update(user)).serialize();
+
 	}
 
 }
