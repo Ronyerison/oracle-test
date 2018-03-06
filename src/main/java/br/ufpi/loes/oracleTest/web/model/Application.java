@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,10 +39,10 @@ public class Application implements Serializable{
 	@OneToMany(mappedBy="application", cascade=CascadeType.ALL)
 	private List<Action> actions;
 	
-	@OneToMany(mappedBy="application", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="application", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<MachineLearningReport> reports;
 	
-	@OneToMany(mappedBy="application", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="application", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Simulation> simulations;
 	
 	public Long getId() {

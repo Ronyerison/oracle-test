@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,8 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import javassist.CtPrimitiveType;
 
 /**
  * @author Rony
@@ -37,7 +36,7 @@ public class Simulation implements Serializable{
 	@ManyToOne
 	private User user;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private MachineLearningReport report;
 	
 	@ManyToOne
@@ -92,6 +91,12 @@ public class Simulation implements Serializable{
 
 	public void setApplication(Application application) {
 		this.application = application;
+	}
+
+	@Override
+	public String toString() {
+		return "Simulation [id=" + id + ", simulationDate=" + simulationDate + ", user=" + user + ", report=" + report
+				+ ", application=" + application + "]";
 	}
 	
 	

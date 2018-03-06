@@ -1,5 +1,7 @@
 package br.ufpi.loes.oracleTest.web.controller;
 
+import javax.inject.Inject;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -19,32 +21,34 @@ import br.ufpi.loes.oracleTest.web.repository.SimulationDao;
  */
 @Controller
 @Path("/backend/simulation")
-public class SimulationController extends BaseController  {
+public class SimulationController extends BaseController {
 	private final Result result;
 	@SuppressWarnings("unused")
 	private final ReportDao reportDao;
 	private final MachineLearning machineLearning;
 	private final DataPreparation dataPreparation;
 	private final SimulationDao simulationDao;
-	
+
 	public SimulationController() {
 		this(null, null, null, null, null);
 	}
-	
-	public SimulationController(Result result, ReportDao reportDao, MachineLearning machineLearning, DataPreparation dataPreparation, SimulationDao simulationDao) {
+
+	@Inject
+	public SimulationController(Result result, ReportDao reportDao, MachineLearning machineLearning,
+			DataPreparation dataPreparation, SimulationDao simulationDao) {
 		this.result = result;
 		this.reportDao = reportDao;
 		this.machineLearning = machineLearning;
 		this.dataPreparation = dataPreparation;
 		this.simulationDao = simulationDao;
 	}
-	
+
 	@Get("/execute/{applicationName}")
 	public void executeMethod(String applicationName) {
 		try {
 			machineLearning.inicializeInstances(applicationName);
 			machineLearning.inicializeAlgorithm();
-//			reportDao.insert(machineLearning.getReport(), applicationName);
+			// reportDao.insert(machineLearning.getReport(), applicationName);
 			Simulation simulation = new Simulation(null, machineLearning.getReport(), null);
 			simulationDao.insert(simulation, applicationName);
 			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
@@ -52,7 +56,7 @@ public class SimulationController extends BaseController  {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Get("/preparate/{applicationName}")
 	public void preparateActions(String applicationName) {
 		try {
@@ -63,4 +67,15 @@ public class SimulationController extends BaseController  {
 			e.printStackTrace();
 		}
 	}
+
+	@Get("/list/{applicationId}")
+	public void listSimulationsByApplication(Long applicationId) {
+		try {
+			result.use(Results.json()).withoutRoot().from(simulationDao.findSimulationsByApplication(applicationId))
+					.include("report").include("report.classMeasurements").include("user").serialize();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
