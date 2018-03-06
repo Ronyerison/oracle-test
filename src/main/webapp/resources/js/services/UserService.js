@@ -21,6 +21,7 @@ angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieSt
 			.then(function (result){
 				if(result.status == 200){
 					userInfo = {
+						id: result.data.id,
 						email: result.data.email,
 						name: result.data.name,
 						login: result.data.login
