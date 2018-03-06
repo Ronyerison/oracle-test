@@ -16,6 +16,13 @@
 
 	<dependencies>
 
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -116,13 +123,13 @@
 			<artifactId>vraptor-jpa</artifactId>
 			<version>4.0.3</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
 			<artifactId>weka-stable</artifactId>
 			<version>3.8.0</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>

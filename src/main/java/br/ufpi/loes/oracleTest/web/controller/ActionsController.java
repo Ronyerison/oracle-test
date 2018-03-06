@@ -22,8 +22,10 @@ import br.ufpi.loes.oracleTest.common.controller.BaseController;
 import br.ufpi.loes.oracleTest.core.dataPreparation.DataPreparation;
 import br.ufpi.loes.oracleTest.core.machineLearning.MachineLearning;
 import br.ufpi.loes.oracleTest.web.model.Action;
+import br.ufpi.loes.oracleTest.web.model.Simulation;
 import br.ufpi.loes.oracleTest.web.repository.ActionsDao;
 import br.ufpi.loes.oracleTest.web.repository.ReportDao;
+import br.ufpi.loes.oracleTest.web.repository.SimulationDao;
 
 /**
  * @author Ronyerison
@@ -35,23 +37,26 @@ public class ActionsController extends BaseController{
 
 	private final Result result;
 	private final ActionsDao actionsDao;
+	@SuppressWarnings("unused")
 	private final ReportDao reportDao;
+	private final SimulationDao simulationDao;
 
 	private final MachineLearning machineLearning;
 	private final DataPreparation dataPreparation;
 
 	public ActionsController() {
-		this(null, null, null, null, null);
+		this(null, null, null, null, null, null);
 	}
 
 	@Inject
 	public ActionsController(Result result, ActionsDao actionsDao, MachineLearning machineLearning,
-			DataPreparation dataPreparation, ReportDao reportDao) {
+			DataPreparation dataPreparation, ReportDao reportDao, SimulationDao simulationDao) {
 		this.result = result;
 		this.actionsDao = actionsDao;
 		this.machineLearning = machineLearning;
 		this.dataPreparation = dataPreparation;
 		this.reportDao = reportDao;
+		this.simulationDao = simulationDao;
 	}
 
 	@Consumes(value = "application/json", options = WithRoot.class)
@@ -100,7 +105,9 @@ public class ActionsController extends BaseController{
 			machineLearning.inicializeInstances(applicationName);
 			machineLearning.inicializeAlgorithm();
 			System.out.println(machineLearning.getReport().toString());
-			reportDao.insert(machineLearning.getReport(), applicationName);
+//			reportDao.insert(machineLearning.getReport(), applicationName);
+			Simulation simulation = new Simulation(null, machineLearning.getReport(), null);
+			simulationDao.insert(simulation, applicationName);
 			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
 			
 		} catch (Exception e) {

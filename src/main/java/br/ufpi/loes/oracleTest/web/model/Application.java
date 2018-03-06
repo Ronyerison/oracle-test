@@ -28,9 +28,8 @@ public class Application implements Serializable{
 	private Long id;
 	private String name;
 	private String url;
-	private boolean hasTestUser;
-	private String loginUser;
-	private String passwordUser;
+	private Boolean captureActions;
+	private String captureCode;
 	
 	@ManyToOne(targetEntity=User.class)
 	@JoinColumn(name="owner_id")
@@ -41,6 +40,9 @@ public class Application implements Serializable{
 	
 	@OneToMany(mappedBy="application", cascade=CascadeType.ALL)
 	private List<MachineLearningReport> reports;
+	
+	@OneToMany(mappedBy="application", cascade=CascadeType.ALL)
+	private List<Simulation> simulations;
 	
 	public Long getId() {
 		return id;
@@ -60,24 +62,6 @@ public class Application implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public boolean getHasTestUser() {
-		return hasTestUser;
-	}
-	public void setHasTestUser(boolean hasTestUser) {
-		this.hasTestUser = hasTestUser;
-	}
-	public String getLoginUser() {
-		return loginUser;
-	}
-	public void setLoginUser(String loginUser) {
-		this.loginUser = loginUser;
-	}
-	public String getPasswordUser() {
-		return passwordUser;
-	}
-	public void setPasswordUser(String passwordUser) {
-		this.passwordUser = passwordUser;
-	}
 	public User getOwner() {
 		return owner;
 	}
@@ -96,11 +80,24 @@ public class Application implements Serializable{
 	public void setReports(List<MachineLearningReport> reports) {
 		this.reports = reports;
 	}
-	@Override
-	public String toString() {
-		return "Application [id=" + id + ", name=" + name + ", url=" + url + ", owner=" + owner + "]";
+	public Boolean getCaptureActions() {
+		return captureActions;
 	}
-	
+	public void setCaptureActions(Boolean captureActions) {
+		this.captureActions = captureActions;
+	}
+	public String getCaptureCode() {
+		return captureCode;
+	}
+	public void setCaptureCode(String captureCode) {
+		this.captureCode = captureCode;
+	}
+	public List<Simulation> getSimulations() {
+		return simulations;
+	}
+	public void setSimulations(List<Simulation> simulations) {
+		this.simulations = simulations;
+	}
 	
 
 }

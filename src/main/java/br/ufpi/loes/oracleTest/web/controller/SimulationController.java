@@ -8,7 +8,9 @@ import br.com.caelum.vraptor.view.Results;
 import br.ufpi.loes.oracleTest.common.controller.BaseController;
 import br.ufpi.loes.oracleTest.core.dataPreparation.DataPreparation;
 import br.ufpi.loes.oracleTest.core.machineLearning.MachineLearning;
+import br.ufpi.loes.oracleTest.web.model.Simulation;
 import br.ufpi.loes.oracleTest.web.repository.ReportDao;
+import br.ufpi.loes.oracleTest.web.repository.SimulationDao;
 
 /**
  * 
@@ -19,19 +21,22 @@ import br.ufpi.loes.oracleTest.web.repository.ReportDao;
 @Path("/backend/simulation")
 public class SimulationController extends BaseController  {
 	private final Result result;
+	@SuppressWarnings("unused")
 	private final ReportDao reportDao;
 	private final MachineLearning machineLearning;
 	private final DataPreparation dataPreparation;
+	private final SimulationDao simulationDao;
 	
 	public SimulationController() {
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 	
-	public SimulationController(Result result, ReportDao reportDao, MachineLearning machineLearning, DataPreparation dataPreparation) {
+	public SimulationController(Result result, ReportDao reportDao, MachineLearning machineLearning, DataPreparation dataPreparation, SimulationDao simulationDao) {
 		this.result = result;
 		this.reportDao = reportDao;
 		this.machineLearning = machineLearning;
 		this.dataPreparation = dataPreparation;
+		this.simulationDao = simulationDao;
 	}
 	
 	@Get("/execute/{applicationName}")
@@ -39,7 +44,9 @@ public class SimulationController extends BaseController  {
 		try {
 			machineLearning.inicializeInstances(applicationName);
 			machineLearning.inicializeAlgorithm();
-			reportDao.insert(machineLearning.getReport(), applicationName);
+//			reportDao.insert(machineLearning.getReport(), applicationName);
+			Simulation simulation = new Simulation(null, machineLearning.getReport(), null);
+			simulationDao.insert(simulation, applicationName);
 			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
 		} catch (Exception e) {
 			e.printStackTrace();

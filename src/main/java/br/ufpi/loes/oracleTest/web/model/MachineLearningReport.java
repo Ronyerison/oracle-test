@@ -2,7 +2,6 @@ package br.ufpi.loes.oracleTest.web.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import weka.classifiers.Evaluation;
@@ -45,6 +45,9 @@ public class MachineLearningReport implements Serializable {
 	
 	@ManyToOne
 	private Application application;
+	
+	@OneToOne(mappedBy="report", cascade=CascadeType.ALL)
+	private Simulation simulation;
 
 	public MachineLearningReport() {
 		this.classMeasurements =  new ArrayList<ClassMeasurementReport>();
