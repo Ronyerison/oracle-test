@@ -15,7 +15,7 @@
 				<!-- form of Register -->
 				<form ng-submit="add()" class="form">
 					<div class="form-group">
-						<input type="text" class="form-control" ng-model="application.name" id="title-app" placeholder="Nome da Aplicacao" autofocus required/>
+						<input type="text" class="form-control" ng-model="application.name" id="title-app" placeholder="Nome da Aplicacao" autofocus="autofocus" required/>
 					</div>
 						
 					<div class="form-group">
@@ -30,11 +30,11 @@
 					
 					<div ng-show="application.hasTestUser">
 						<div class="form-group" >
-							<input type="text" class="form-control" ng-model="application.loginUser" id="title-app" placeholder="Usuario de Teste" autofocus required/>
+							<input type="text" class="form-control" ng-model="application.loginUser" id="loginUser-app" placeholder="Usuario de Teste"/>
 						</div>
 						
 						<div class="form-group" >
-							<input type="password" class="form-control" ng-model="application.passwordUser" id="title-app" placeholder="Senha para Usuario de Teste" autofocus required/>
+							<input type="password" class="form-control" ng-model="application.passwordUser" id="passwordUser-app" placeholder="Senha para Usuario de Teste"/>
 						</div>
 					</div>
 					
