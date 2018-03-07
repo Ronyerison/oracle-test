@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import br.ufpi.loes.oracleTest.web.model.Application;
 import br.ufpi.loes.oracleTest.web.model.Simulation;
 
 /**
@@ -32,7 +33,9 @@ public class SimulationDao extends GenericDao<Simulation>{
 	}
 	
 	public void insert(Simulation simulation, String applicationName) {
-		simulation.setApplication(applicationDao.getApplicationByName(applicationName));
+		Application application = applicationDao.getApplicationByName(applicationName);
+		simulation.setApplication(application);
+		simulation.getReport().setApplication(application);
 		super.insert(simulation);
 	}
 	
