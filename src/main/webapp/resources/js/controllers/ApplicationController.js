@@ -1,4 +1,13 @@
-angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$cookieStore', '$state', 'ApplicationService' , function($scope, $cookieStore, $state, ApplicationService) {
+angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$cookieStore', '$state', 'ApplicationService', '$stateParams' , function($scope, $cookieStore, $state, ApplicationService) {
+	
+	if ($cookieStore.get("application")) {
+		if($state.is('dashboard.view-application')){
+			$scope.application = JSON.parse($cookieStore.get("application"));
+			console.log($scope.application);
+		} else {
+			$cookieStore.remove("application");
+		}
+    }
 	
 	$scope.add = function() {
 		$scope.userInfo = JSON.parse($cookieStore.get("userInfo"));
@@ -21,7 +30,6 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 		$scope.userInfo = JSON.parse($cookieStore.get("userInfo"));
 		
 		ApplicationService.listApplicationUser($scope.userInfo).success(function(data) {
-			console.log("Deu certo");
 			console.log(data.length);
 			if(data.length > 0) {
 				$scope.listApplications = data;
@@ -34,4 +42,13 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 		});
 	}
 	
-} ]);
+	$scope.listSimulations = function(application) {
+		ApplicationService.getSimulations(application).then(function(response) {
+			$state.go('dashboard.view-application', {idApplication: application.id}, {reload: true});
+		}).catch(function(err){
+			$scope.error = "Error ao buscar a lista de simulações !!!";
+		})
+			
+	}
+	
+}]);
