@@ -107,6 +107,14 @@ app.config([
 						templateUrl : 'views/dashboard/application/listApp.html'
 					}
 				}
+			}).state('dashboard.view-application', {
+				url : '/applications/view-application/?idapplication',
+				views : {
+					'' : {
+						controller : 'ApplicationController',
+						templateUrl : 'views/dashboard/application/application.html'
+					}
+				}
 			}).state('dashboard.actions-application', {
 				url : '/applications/application/actions',
 				views : {
@@ -115,15 +123,7 @@ app.config([
 						templateUrl : 'views/dashboard/application/actions.html'
 					}
 				}
-			})/*.statte('dashboard.actions-repoart', {
-				url: '/applications/repoart/{application}',
-				views : {
-					'' : {
-						controller : 'ActionController',
-						templateUrl : 'views/dashboard/application/repoart.html'
-					}
-				}
-			})*/;
+			});
 
 			// Enable cross domain calls
 			$httpProvider.defaults.useXDomain = true;
