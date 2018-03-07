@@ -2,16 +2,19 @@ angular.module("oracle-test").service("ActionService", ["$http", '$q', "$cookieS
 	
 	function listActions(applicationName) {
 		return $http.get("http://localhost:8080/oracle-test/backend/actions/"+applicationName);
-	};
+	}
+	
+	function executeMethod(applicationName) {
+		return $http.get("http://localhost:8080/oracle-test/backend/simulation/execute/"+applicationName);
+	}
 	
 	function generateInvalideActions(applicationName) {
-		$http.get("http://localhost:8080/oracle-test/backend/actions/preparateActions/"+applicationName);
-		
-		return listActions(applicationName);
+		return $http.get("http://localhost:8080/oracle-test/backend/simulation/preparate/"+applicationName);
 	}
 	
 	return {
 		listActions: listActions,
+		executeMethod: executeMethod,
 		generateInvalideActions: generateInvalideActions
 	}
 	
