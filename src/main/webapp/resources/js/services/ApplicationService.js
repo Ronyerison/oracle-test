@@ -23,27 +23,7 @@ angular.module("oracle-test").factory("ApplicationService", ["$http", "$q", "$co
 	}
 	
 	function getSimulations(application) {
-		var deferred = $q.defer();
-		
-		$http.get("http://localhost:8080/oracle-test/backend/simulation/list/" + application.id).then(function(result) {
-			if(result.status == 200) {
-				var app = {
-						id: application.id,
-						url: application.url,
-						name: application.name,
-						simulations: result.data
-				}
-				
-				$cookieStore.put("application", JSON.stringify(app));
-				deferred.resolve(app);
-			} else{
-				deferred.reject(result);
-			}
-		}, function(error) {
-			deferred.reject(error);
-		});
-		
-		return deferred.promise;
+		return $http.get("http://localhost:8080/oracle-test/backend/simulation/list/" + application.id);	
 	}
 	
 	return {
