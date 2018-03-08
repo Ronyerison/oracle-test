@@ -108,7 +108,7 @@ app.config([
 					}
 				}
 			}).state('dashboard.view-application', {
-				url : '/applications/view-application/?idapplication',
+				url : '/applications/view-application/?{id&name&url}',
 				views : {
 					'' : {
 						controller : 'ApplicationController',
