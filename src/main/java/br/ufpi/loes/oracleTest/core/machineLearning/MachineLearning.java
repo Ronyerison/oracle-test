@@ -34,10 +34,10 @@ public class MachineLearning implements Serializable {
 
 	}
 
-	public void inicializeInstances(String applicationName) {
+	public void inicializeInstances(Long applicationId) {
 		try {
 
-			String sql = "SELECT a.sActiontype, a.sTag, a.sTagIndex, a.sUrl, a.sXPath, a.sOracleVisibleElements, a.sOracleUrl, a.sOracleveredict  FROM Action a WHERE a.sClient LIKE '%" + applicationName + "%'";
+			String sql = "SELECT a.sActiontype, a.sTag, a.sTagIndex, a.sUrl, a.sXPath, a.sOracleVisibleElements, a.sOracleUrl, a.sOracleveredict  FROM Action a WHERE a.application.id = " + applicationId;
 			File file = new File(getClass().getClassLoader().getResource("DatabaseUtils.props").toURI());
 			InstanceQuery query = new InstanceQuery();
 			query.setCustomPropsFile(file);

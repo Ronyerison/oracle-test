@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import br.ufpi.loes.oracleTest.common.util.PasswordGenerator;
 import br.ufpi.loes.oracleTest.web.exceptions.OracleException;
 import br.ufpi.loes.oracleTest.web.model.Application;
 import br.ufpi.loes.oracleTest.web.model.User;
@@ -55,7 +56,7 @@ public class ApplicationDao implements Serializable{
 			query.setParameter("email", '%'+application.getOwner().getEmail()+'%');
 			User user = query.getSingleResult();
 			application.setOwner(user);
-			
+			application.setCaptureCode(PasswordGenerator.generateApplicationCode());
 			return em.merge(application);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,6 +90,17 @@ public class ApplicationDao implements Serializable{
 		try {
 			TypedQuery<Application> query = em.createQuery("Select a from Application a where a.name like lower(:name)", Application.class);
 			query.setParameter("name", "%" + name + "%");
+			return query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Application getApplicationByCaptureCode(String captureCode) {
+		try {
+			TypedQuery<Application> query = em.createQuery("Select a from Application a where a.captureCode like :captureCode", Application.class);
+			query.setParameter("captureCode", "%" + captureCode + "%");
 			return query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();

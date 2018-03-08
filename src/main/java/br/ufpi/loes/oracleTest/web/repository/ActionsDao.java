@@ -28,7 +28,7 @@ public class ActionsDao implements Serializable{
 	public void saveActions(List<Action> actions) {
 		try {
 			for (Action action : actions) {
-				action.setApplication(applicationDao.getApplicationByName(action.getsClient()));
+				action.setApplication(applicationDao.getApplicationByCaptureCode(action.getCaptureCode()));
 				em.persist(new Action(action));
 			}
 		} catch (Exception e) {
@@ -62,6 +62,28 @@ public class ActionsDao implements Serializable{
 		try {
 			TypedQuery<String> query = em.createQuery("Select distinct a.sOracleUrl from Action a where lower(a.sClient) like :applicationName", String.class);
 			query.setParameter("applicationName", '%' + applicationName.toLowerCase() + '%');
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Action> findPassActionsByApplicationId(Long applicationId){
+		try {
+			TypedQuery<Action> query = em.createQuery("Select a from Action a where a.application.id = :applicationId AND a.sOracleVeredict like '%PASS%'", Action.class);
+			query.setParameter("applicationId", applicationId);
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<String> listOracleURLByApplicationId(Long applicationId){
+		try {
+			TypedQuery<String> query = em.createQuery("Select distinct a.sOracleUrl from Action a where a.application.id = :applicationId", String.class);
+			query.setParameter("applicationName", applicationId);
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

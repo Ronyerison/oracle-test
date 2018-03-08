@@ -32,8 +32,8 @@ public class SimulationDao extends GenericDao<Simulation>{
 		this.applicationDao = applicationDao;
 	}
 	
-	public void insert(Simulation simulation, String applicationName) {
-		Application application = applicationDao.getApplicationByName(applicationName);
+	public void insert(Simulation simulation, Long applicationId) {
+		Application application = applicationDao.find(applicationId);
 		simulation.setApplication(application);
 		simulation.getReport().setApplication(application);
 		super.insert(simulation);

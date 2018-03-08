@@ -9,13 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
-public class Action implements Serializable{
+public class Action implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String sActionType;
 	private String sContent;
@@ -47,13 +49,15 @@ public class Action implements Serializable{
 	private Long sOracleVisibleElements;
 	private String sOracleUrl;
 	private String sOracleVeredict;
-	
+	@Transient
+	private String captureCode;
+
 	@ManyToOne
 	private Application application;
-	
+
 	public Action() {
 	}
-	
+
 	/**
 	 * @param id
 	 * @param sActionType
@@ -81,13 +85,12 @@ public class Action implements Serializable{
 	 * @param createdAt
 	 * @param updateAt
 	 */
-	public Action(Long id, String sActionType, String sContent, Long sPosX,
-			Long sPosY, String sTag, String sTagIndex, Long sTime,
-			String sUrl, String sContentText, String sClass, String sId,
-			String sName, String sXPath, String sUserAgent, String sClient,
-			Long sVersion, String sUserName, String sRole, String sJhm,
-			String sActionJhm, String sSectionJhm, Boolean sDeleted,
-			String createdAt, String updateAt, Long sOracleElements, Long sOracleVisibleElements, String sOracleUrl, String sOracleVeredict) {
+	public Action(Long id, String sActionType, String sContent, Long sPosX, Long sPosY, String sTag, String sTagIndex,
+			Long sTime, String sUrl, String sContentText, String sClass, String sId, String sName, String sXPath,
+			String sUserAgent, String sClient, Long sVersion, String sUserName, String sRole, String sJhm,
+			String sActionJhm, String sSectionJhm, Boolean sDeleted, String createdAt, String updateAt,
+			Long sOracleElements, Long sOracleVisibleElements, String sOracleUrl, String sOracleVeredict,
+			String captureCode) {
 		this.id = id;
 		this.sActionType = sActionType;
 		this.sContent = sContent;
@@ -116,9 +119,10 @@ public class Action implements Serializable{
 		this.sOracleElements = sOracleElements;
 		this.sOracleVisibleElements = sOracleVisibleElements;
 		this.sOracleUrl = sOracleUrl;
+		this.captureCode = captureCode;
 	}
 
-	public Action(Action action){
+	public Action(Action action) {
 		this.id = action.id;
 		this.sActionType = action.sActionType;
 		this.sContent = action.sContent;
@@ -146,193 +150,259 @@ public class Action implements Serializable{
 		this.sOracleVisibleElements = action.sOracleVisibleElements;
 		this.sOracleUrl = action.sOracleUrl;
 		this.sOracleVeredict = action.sOracleVeredict;
+		this.captureCode = action.captureCode;
 	}
 
-	public Action clone(){
+	public Action clone() {
 		return new Action(this);
 	}
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getsActionType() {
 		return sActionType;
 	}
+
 	public void setsActionType(String sActionType) {
 		this.sActionType = sActionType;
 	}
+
 	public String getsContent() {
 		return sContent;
 	}
+
 	public void setsContent(String sContent) {
 		this.sContent = sContent;
 	}
+
 	public Long getsPosX() {
 		return sPosX;
 	}
+
 	public void setsPosX(Long sPosX) {
 		this.sPosX = sPosX;
 	}
+
 	public Long getsPosY() {
 		return sPosY;
 	}
+
 	public void setsPosY(Long sPosY) {
 		this.sPosY = sPosY;
 	}
+
 	public String getsTag() {
 		return sTag;
 	}
+
 	public void setsTag(String sTag) {
 		this.sTag = sTag;
 	}
+
 	public String getsTagIndex() {
 		return sTagIndex;
 	}
+
 	public void setsTagIndex(String sTagIndex) {
 		this.sTagIndex = sTagIndex;
 	}
+
 	public Long getsTime() {
 		return sTime;
 	}
+
 	public void setsTime(Long sTime) {
 		this.sTime = sTime;
 	}
+
 	public String getsUrl() {
 		return sUrl;
 	}
+
 	public void setsUrl(String sUrl) {
 		this.sUrl = sUrl;
 	}
+
 	public String getsContentText() {
 		return sContentText;
 	}
+
 	public void setsContentText(String sContentText) {
 		this.sContentText = sContentText;
 	}
+
 	public String getsClass() {
 		return sClass;
 	}
+
 	public void setsClass(String sClass) {
 		this.sClass = sClass;
 	}
+
 	public String getsId() {
 		return sId;
 	}
+
 	public void setsId(String sId) {
 		this.sId = sId;
 	}
+
 	public String getsName() {
 		return sName;
 	}
+
 	public void setsName(String sName) {
 		this.sName = sName;
 	}
+
 	public String getsXPath() {
 		return sXPath;
 	}
+
 	public void setsXPath(String sXPath) {
 		this.sXPath = sXPath;
 	}
+
 	public String getsUserAgent() {
 		return sUserAgent;
 	}
+
 	public void setsUserAgent(String sUserAgent) {
 		this.sUserAgent = sUserAgent;
 	}
+
 	public String getsClient() {
 		return sClient;
 	}
+
 	public void setsClient(String sClient) {
 		this.sClient = sClient;
 	}
+
 	public Long getsVersion() {
 		return sVersion;
 	}
+
 	public void setsVersion(Long sVersion) {
 		this.sVersion = sVersion;
 	}
+
 	public String getsUserName() {
 		return sUserName;
 	}
+
 	public void setsUserName(String sUserName) {
 		this.sUserName = sUserName;
 	}
+
 	public String getsRole() {
 		return sRole;
 	}
+
 	public void setsRole(String sRole) {
 		this.sRole = sRole;
 	}
+
 	public String getsJhm() {
 		return sJhm;
 	}
+
 	public void setsJhm(String sJhm) {
 		this.sJhm = sJhm;
 	}
+
 	public String getsActionJhm() {
 		return sActionJhm;
 	}
+
 	public void setsActionJhm(String sActionJhm) {
 		this.sActionJhm = sActionJhm;
 	}
+
 	public String getsSectionJhm() {
 		return sSectionJhm;
 	}
+
 	public void setsSectionJhm(String sSectionJhm) {
 		this.sSectionJhm = sSectionJhm;
 	}
+
 	public Boolean getsDeleted() {
 		return sDeleted;
 	}
+
 	public void setsDeleted(Boolean sDeleted) {
 		this.sDeleted = sDeleted;
 	}
+
 	public String getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public String getUpdateAt() {
 		return updateAt;
 	}
+
 	public void setUpdateAt(String updateAt) {
 		this.updateAt = updateAt;
 	}
+
 	public Long getsOracleElements() {
 		return sOracleElements;
 	}
+
 	public void setsOracleElements(Long sOracleElements) {
 		this.sOracleElements = sOracleElements;
 	}
+
 	public Long getsOracleVisibleElements() {
 		return sOracleVisibleElements;
 	}
+
 	public void setsOracleVisibleElements(Long sOracleVisibleElements) {
 		this.sOracleVisibleElements = sOracleVisibleElements;
 	}
+
 	public String getsOracleUrl() {
 		return sOracleUrl;
 	}
+
 	public void setsOracleUrl(String sOracleUrl) {
 		this.sOracleUrl = sOracleUrl;
 	}
+
 	public String getsOracleVeredict() {
 		return sOracleVeredict;
 	}
+
 	public void setsOracleVeredict(String sOracleVeredict) {
 		this.sOracleVeredict = sOracleVeredict;
 	}
-	
+
 	public Application getApplication() {
 		return application;
 	}
 
 	public void setApplication(Application application) {
 		this.application = application;
+	}
+
+	public String getCaptureCode() {
+		return captureCode;
+	}
+
+	public void setCaptureCode(String captureCode) {
+		this.captureCode = captureCode;
 	}
 
 	@Override
@@ -344,10 +414,8 @@ public class Action implements Serializable{
 				+ sVersion + ", sUserName=" + sUserName + ", sRole=" + sRole + ", sJhm=" + sJhm + ", sActionJhm="
 				+ sActionJhm + ", sSectionJhm=" + sSectionJhm + ", sDeleted=" + sDeleted + ", createdAt=" + createdAt
 				+ ", updateAt=" + updateAt + ", sOracleElements=" + sOracleElements + ", sOracleVisibleElements="
-				+ sOracleVisibleElements + ", sOracleUrl=" + sOracleUrl + ", sOracleVeredict=" + sOracleVeredict + "]";
+				+ sOracleVisibleElements + ", sOracleUrl=" + sOracleUrl + ", sOracleVeredict=" + sOracleVeredict
+				+ ", captureCode=" + captureCode + "]";
 	}
 
-	
-
-	
 }

@@ -83,7 +83,7 @@ public class ActionsController extends BaseController{
 	
 	/**
 	 * 
-	 * @param applicationName
+	 * @param applicationId
 	 */
 //	@Get("/preparateActions/{applicationName}")
 	/*public void preparateActions(String applicationName) {
@@ -98,16 +98,16 @@ public class ActionsController extends BaseController{
 	}*/
 
 //	@Get("/simulation/{applicationName}")
-	@Get("/preparateActions/{applicationName}")
-	public void executeMethod(String applicationName) {
+	@Get("/preparateActions/{applicationId}")
+	public void executeMethod(Long applicationId) {
 		try {
-			dataPreparation.preparateActions(applicationName);
-			machineLearning.inicializeInstances(applicationName);
+			dataPreparation.preparateActions(applicationId);
+			machineLearning.inicializeInstances(applicationId);
 			machineLearning.inicializeAlgorithm();
 			System.out.println(machineLearning.getReport().toString());
 //			reportDao.insert(machineLearning.getReport(), applicationName);
 			Simulation simulation = new Simulation(null, machineLearning.getReport(), null);
-			simulationDao.insert(simulation, applicationName);
+			simulationDao.insert(simulation, applicationId);
 			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
 			
 		} catch (Exception e) {

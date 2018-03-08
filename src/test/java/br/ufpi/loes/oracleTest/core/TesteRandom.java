@@ -1,7 +1,5 @@
 package br.ufpi.loes.oracleTest.core;
 
-import br.ufpi.loes.oracleTest.core.machineLearning.MachineLearning;
-
 public class TesteRandom {
 
 	public static void main(String[] args) {
@@ -21,10 +19,10 @@ public class TesteRandom {
 //			System.out.println(newNum);
 //		}
 		
-		MachineLearning ml = new MachineLearning();
-		ml.inicializeInstances("THEEND");
-		System.out.println("Class: " + ml.getInstances().classAttribute().toString());
-		ml.inicializeAlgorithm();
+//		MachineLearning ml = new MachineLearning();
+//		ml.inicializeInstances("THEEND");
+//		System.out.println("Class: " + ml.getInstances().classAttribute().toString());
+//		ml.inicializeAlgorithm();
 	}
 
 }
