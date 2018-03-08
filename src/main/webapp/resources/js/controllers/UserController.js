@@ -27,10 +27,11 @@ app.controller('UserController', function($scope, $rootScope, $stateParams,
 	
 	$scope.add = function() {
 		if($scope.user.password === $scope.re_password) {
-			console.log($scope.user);
 			LoginService.addUser($scope.user).success(function(data){
+				$scope.user.name = '';
+				$scope.user.email = '';
+				$scope.user.password = '';
 				$scope.re_password = '';
-				$scope.user = undefined;
 				console.log("Deu certo!! Usuario Salvo");
 				console.log(JSON.stringify(data));
 			}).error(function(data, status) {
