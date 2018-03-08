@@ -173,7 +173,7 @@ header.masthead {
       margin-bottom: 50px;
       font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; } }
 
-.service-heading {
+.service-heading, .global-heading {
   margin: 15px 0;
   text-transform: none; }
 

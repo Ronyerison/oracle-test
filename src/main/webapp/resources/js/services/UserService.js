@@ -7,8 +7,8 @@ angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieSt
 		return isLogged;
 	}
 	
-	function add(user) {
-		$http.post("http://localhost:8080/oracle-test/backend/users", JSON.stringify(user));
+	function addUser(user) {
+		return $http.post("http://localhost:8080/oracle-test/backend/users", JSON.stringify(user));
 	}
 	
 	function login(email, password) {
@@ -48,7 +48,7 @@ angular.module("oracle-test").factory("LoginService", ["$http", "$q", "$cookieSt
 	
 	return{
 		login: login,
-		addUser: add,
+		addUser: addUser,
 		isAuthenticated: isAuthenticated,
 		userInfo: getUserInfo
 	};
