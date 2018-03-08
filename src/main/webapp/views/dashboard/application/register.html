@@ -21,22 +21,22 @@
 					<div class="form-group">
 						<input type="text" class="form-control" ng-model="application.url" id="url-app" placeholder="URL da Aplicacao" autofocus required/>
 					</div>
-						
-					<div class="form-group">	
-						<div class="checkbox pull-left">
-							<label> <input type="checkbox" ng-model="application.hasTestUser"> Requires test user</label>
-						</div>
-					</div>
+						<!-- RETIRADA DE CAMPOS -->
+<!-- 					<div class="form-group">	 -->
+<!-- 						<div class="checkbox pull-left"> -->
+<!-- 							<label> <input type="checkbox" ng-model="application.hasTestUser"> Requires test user</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					
-					<div ng-show="application.hasTestUser">
-						<div class="form-group" >
-							<input type="text" class="form-control" ng-model="application.loginUser" id="loginUser-app" placeholder="Usuario de Teste"/>
-						</div>
+<!-- 					<div ng-show="application.hasTestUser"> -->
+<!-- 						<div class="form-group" > -->
+<!-- 							<input type="text" class="form-control" ng-model="application.loginUser" id="loginUser-app" placeholder="Usuario de Teste"/> -->
+<!-- 						</div> -->
 						
-						<div class="form-group" >
-							<input type="password" class="form-control" ng-model="application.passwordUser" id="passwordUser-app" placeholder="Senha para Usuario de Teste"/>
-						</div>
-					</div>
+<!-- 						<div class="form-group" > -->
+<!-- 							<input type="password" class="form-control" ng-model="application.passwordUser" id="passwordUser-app" placeholder="Senha para Usuario de Teste"/> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					
 					<div class="form-group col-md-12">
 						<button type="submit" class="btn btn-lg btn-primary pull-right"> Cadastrar</button>
