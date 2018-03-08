@@ -44,6 +44,12 @@ public class UserController extends BaseController{
 	public void add(User user) {
 		if (!userDao.containsUserWithEMail(user.getEmail())) {
 			userDao.insert(user);
+			
+			addSucessMessage("Usuario salvo com sucess !");
+			result.use(Results.json()).withoutRoot()
+			.from(messages).serialize();
+		} else {
+			addErrorMessage("O email ja cadastrado !!!");
 		}
 	}
 	
