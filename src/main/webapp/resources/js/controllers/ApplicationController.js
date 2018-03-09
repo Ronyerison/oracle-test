@@ -24,7 +24,17 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 			//TODO: ADD MENSAGEM DE ERRO
 			console.log("Deu errado");
 		});
-	};
+	}
+	
+	$scope.deleteApp = function(idApplication) {
+		console.log("idApp: ", idApplication);
+		ApplicationService.deleteApplication(idApplication).success(function(data) {
+			$state.reload();
+		}).error(function(data, status) {
+			//TODO: ADD MENSAGEM DE ERRO
+			console.log("Deu errado a exclusão da aplicacao!!");
+		});
+	}
 	
 	$scope.list = function() {
 		$scope.userInfo = JSON.parse($cookieStore.get("userInfo"));
@@ -49,12 +59,10 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 				url: $stateParams.url
 		}
 		
+		$scope.application = app;
 		ApplicationService.getSimulations(app).success(function(data) {
 			if(data.length > 0) {
-				app.simulations = data;
-				
-				$scope.application = app;
-				
+				$scope.application.simulations = data;
 			} else {
 				$scope.error = "Não existem simulações cadastradas !!!"
 			}

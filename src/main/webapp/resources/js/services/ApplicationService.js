@@ -14,6 +14,10 @@ angular.module("oracle-test").factory("ApplicationService", ["$http", "$q", "$co
 		return $http.post("http://localhost:8080/oracle-test/backend/application", JSON.stringify(application));
 	}
 	
+	function deleteApplication(idApplication) {
+		return $http.delete("http://localhost:8080/oracle-test/backend/application/"+idApplication);
+	}
+	
 	function getApplication(application) {
 		return $http.get("http://localhost:8080/oracle-test/backend/application/"+application.id);
 	}
@@ -30,6 +34,7 @@ angular.module("oracle-test").factory("ApplicationService", ["$http", "$q", "$co
 		addApplication: addApplication,
 		getApplication: getApplication,
 		getSimulations: getSimulations,
+		deleteApplication: deleteApplication,
 		listApplicationUser: listApplicationUser,
 	}
 } ]);
