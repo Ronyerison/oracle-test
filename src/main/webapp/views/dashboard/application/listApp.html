@@ -28,8 +28,7 @@
 							<td>{{app.url}}</td>
 							<td><button ng-click="" class="btn btn-outline-primary"><i class="fa fa-edit fa-fw"></i></button></td>
 							<td><button ui-sref="dashboard.view-application({id: app.id, name: app.name, url: app.url})" class="btn btn-outline-success"><i class="fa fa-eye fa-fw"></i></button></td>
-<!-- 							<td><button ng-click="listSimulations(app)" class="btn btn-outline-success"><i class="fa fa-eye fa-fw"></i></button></td> -->
-							<td><button ng-click="delete(app.id)" class="btn btn-outline-danger"><i class="fa fa-trash-o  fa-fw"></i></button></td>
+							<td><button ng-click="deleteApp(app.id)" class="btn btn-outline-danger"><i class="fa fa-trash-o  fa-fw"></i></button></td>
 						</tbody>				
 					</table> <!-- .table table-hover  -->
 				</div> <!-- .table-responsive  -->
