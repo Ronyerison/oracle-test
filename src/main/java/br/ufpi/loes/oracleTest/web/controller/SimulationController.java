@@ -43,14 +43,14 @@ public class SimulationController extends BaseController {
 		this.simulationDao = simulationDao;
 	}
 
-	@Get("/execute/{applicationId}")
-	public void executeMethod(Long applicationId) {
+	@Get("/execute/{applicationId}/{userId}")
+	public void executeMethod(Long applicationId, Long userId) {
 		try {
 			machineLearning.inicializeInstances(applicationId);
 			machineLearning.inicializeAlgorithm();
 			// reportDao.insert(machineLearning.getReport(), applicationName);
 			Simulation simulation = new Simulation(null, machineLearning.getReport(), null);
-			simulationDao.insert(simulation, applicationId);
+			simulationDao.insert(simulation, applicationId, userId);
 			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
 		} catch (Exception e) {
 			e.printStackTrace();

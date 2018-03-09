@@ -77,7 +77,7 @@ public class ActionsController extends BaseController{
 
 	@Get("/{applicationName}")
 	public void getActionsByApplication(String applicationName) {
-		result.use(Results.json()).withoutRoot().from(actionsDao.findActionsByApplication(applicationName)).serialize();
+		result.use(Results.json()).withoutRoot().from(actionsDao.findActionsByApplication(applicationName)).include("application").serialize();
 
 	}
 	
@@ -96,24 +96,6 @@ public class ActionsController extends BaseController{
 			e.printStackTrace();
 		}
 	}*/
-
-//	@Get("/simulation/{applicationName}")
-	@Get("/preparateActions/{applicationId}")
-	public void executeMethod(Long applicationId) {
-		try {
-			dataPreparation.preparateActions(applicationId);
-			machineLearning.inicializeInstances(applicationId);
-			machineLearning.inicializeAlgorithm();
-			System.out.println(machineLearning.getReport().toString());
-//			reportDao.insert(machineLearning.getReport(), applicationName);
-			Simulation simulation = new Simulation(null, machineLearning.getReport(), null);
-			simulationDao.insert(simulation, applicationId);
-			result.use(Results.json()).withoutRoot().from(machineLearning.getReport()).serialize();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
 
 	private static List<Action> toList(String json) {
 		if (null == json) {

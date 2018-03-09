@@ -36,6 +36,17 @@ public class ActionsDao implements Serializable{
 		}
 	}
 	
+	public void saveInvalidActions(List<Action> actions) {
+		try {
+			for (Action action : actions) {
+//				action.setApplication(applicationDao.getApplicationByCaptureCode(action.getCaptureCode()));
+				em.persist(action);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public List<Action> findActionsByApplication(String applicationName){
 		try {
 			TypedQuery<Action> query = em.createQuery("Select a from Action a where lower(a.sClient) like :applicationName", Action.class);
@@ -83,7 +94,7 @@ public class ActionsDao implements Serializable{
 	public List<String> listOracleURLByApplicationId(Long applicationId){
 		try {
 			TypedQuery<String> query = em.createQuery("Select distinct a.sOracleUrl from Action a where a.application.id = :applicationId", String.class);
-			query.setParameter("applicationName", applicationId);
+			query.setParameter("applicationId", applicationId);
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

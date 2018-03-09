@@ -90,7 +90,7 @@ public class Action implements Serializable {
 			String sUserAgent, String sClient, Long sVersion, String sUserName, String sRole, String sJhm,
 			String sActionJhm, String sSectionJhm, Boolean sDeleted, String createdAt, String updateAt,
 			Long sOracleElements, Long sOracleVisibleElements, String sOracleUrl, String sOracleVeredict,
-			String captureCode) {
+			String captureCode, Application application) {
 		this.id = id;
 		this.sActionType = sActionType;
 		this.sContent = sContent;
@@ -120,6 +120,7 @@ public class Action implements Serializable {
 		this.sOracleVisibleElements = sOracleVisibleElements;
 		this.sOracleUrl = sOracleUrl;
 		this.captureCode = captureCode;
+		this.application = application;
 	}
 
 	public Action(Action action) {
@@ -151,6 +152,7 @@ public class Action implements Serializable {
 		this.sOracleUrl = action.sOracleUrl;
 		this.sOracleVeredict = action.sOracleVeredict;
 		this.captureCode = action.captureCode;
+		this.application = action.application;
 	}
 
 	public Action clone() {

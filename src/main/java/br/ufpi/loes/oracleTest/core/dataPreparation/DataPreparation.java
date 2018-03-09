@@ -33,8 +33,8 @@ public class DataPreparation implements Serializable{
 		List<Action> dubiousActions = generateDubious(actions);
 		List<Action> failActions = generateFails(actions, oracleURLs);
 		
-		actionsDao.saveActions(failActions);
-		actionsDao.saveActions(dubiousActions);
+		actionsDao.saveInvalidActions(failActions);
+		actionsDao.saveInvalidActions(dubiousActions);
 		
 	}
 

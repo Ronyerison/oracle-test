@@ -10,8 +10,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import br.ufpi.loes.oracleTest.web.interceptor.UserInfo;
 import br.ufpi.loes.oracleTest.web.model.Application;
 import br.ufpi.loes.oracleTest.web.model.Simulation;
+import br.ufpi.loes.oracleTest.web.model.User;
 
 /**
  * @author Rony
@@ -19,22 +21,26 @@ import br.ufpi.loes.oracleTest.web.model.Simulation;
  */
 @RequestScoped
 public class SimulationDao extends GenericDao<Simulation>{
-
+	
+	private UserDao userDao;
 	private ApplicationDao applicationDao;
 	
 	protected SimulationDao() {
-		this(null, null);
+		this(null, null, null);
 	}
 	
 	@Inject
-	public SimulationDao(EntityManager entityManager, ApplicationDao applicationDao) {
+	public SimulationDao(EntityManager entityManager, ApplicationDao applicationDao, UserDao userDao) {
 		super(entityManager);
 		this.applicationDao = applicationDao;
+		this.userDao = userDao;
 	}
 	
-	public void insert(Simulation simulation, Long applicationId) {
+	public void insert(Simulation simulation, Long applicationId, Long userId) {
 		Application application = applicationDao.find(applicationId);
+		User user = userDao.find(userId);
 		simulation.setApplication(application);
+		simulation.setUser(user);
 		simulation.getReport().setApplication(application);
 		super.insert(simulation);
 	}
