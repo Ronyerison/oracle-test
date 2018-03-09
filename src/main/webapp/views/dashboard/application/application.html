@@ -19,16 +19,14 @@
 							<tr>
 								<th>Data</th>
 								<th>Indice Kappa</th>
-								<th>Pct. Correto</th>
-								<th>Pct. Incorreto</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="simulation in application.simulations" ng-click="">
+							<tr ng-repeat="simulation in application.simulations">
 								<td>{{simulation.simulationDate | date: 'dd/MM/yyyy HH:mm'}}</td>
 								<td>{{simulation.report.kappa}}</td>
-								<td>{{simulation.report.pctCorrect}}</td>
-								<td>{{simulation.report.pctIncorrect}}</td>
+								<td><button ng-click="" class="btn btn-outline-primary"><i class="fa fa-eye  fa-fw"></i></button></td>
+								<td><button ng-click="" class="btn btn-outline-danger"><i class="fa fa-trash-o  fa-fw"></i></button></td>
 							</tr>
 						</tbody>
 					</table>
@@ -41,33 +39,3 @@
 		
 	</div>
 </div>
-
-<!-- <div class="row"> -->
-<!-- 	<div class="col-md-8"> -->
-<!-- 		<div class="panel panel-default"> -->
-<!-- 			<div class="panel-heading"> -->
-<!-- 	        	Simulacoes da aplicacao: <span class="text-primary"> {{ application.name }}</span> -->
-<!-- 			</div> -->
-			
-<!-- 			<div class="panel-body"> -->
-<!-- 				<div class="col-md-8"> -->
-<!-- 					<div class="table-responsive"> -->
-<!-- 						<table class="table table-hover"> -->
-<!-- 							<thead> -->
-<!-- 								<tr> -->
-<!-- 									<th>Data</th> -->
-<!-- 									<th>Aplicacao</th> -->
-<!-- 									<th></th> -->
-<!-- 								</tr> -->
-<!-- 							</thead> -->
-<!-- 						</table> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-				
-<!-- 				<div class="col-md-4"> -->
-					
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </div> -->
