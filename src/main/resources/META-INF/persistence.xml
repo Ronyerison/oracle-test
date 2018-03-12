@@ -10,6 +10,7 @@
 		<class>br.ufpi.loes.oracleTest.web.model.ClassMeasurementReport</class>
 		<class>br.ufpi.loes.oracleTest.web.model.MachineLearningReport</class>
 		<class>br.ufpi.loes.oracleTest.web.model.Simulation</class>
+		<class>br.ufpi.loes.oracleTest.web.model.StatisticApplication</class>
 
 		<properties>
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/oracle" />

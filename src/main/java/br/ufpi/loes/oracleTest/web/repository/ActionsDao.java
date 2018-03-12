@@ -10,7 +10,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import br.ufpi.loes.oracleTest.web.exceptions.OracleException;
 import br.ufpi.loes.oracleTest.web.model.Action;
+import br.ufpi.loes.oracleTest.web.model.Application;
 
 /**
  * @author Ronyerison
@@ -27,9 +29,14 @@ public class ActionsDao implements Serializable{
 	
 	public void saveActions(List<Action> actions) {
 		try {
-			for (Action action : actions) {
-				action.setApplication(applicationDao.getApplicationByCaptureCode(action.getCaptureCode()));
-				em.persist(new Action(action));
+			Application application = applicationDao.getApplicationByCaptureCode(actions.get(0).getCaptureCode());
+			if(application != null) {
+				for (Action action : actions) {
+					action.setApplication(application);
+					em.persist(new Action(action));
+				}
+			}else {
+				throw new OracleException("Código da Aplicação Inválido!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
