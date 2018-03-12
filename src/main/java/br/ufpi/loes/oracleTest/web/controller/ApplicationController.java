@@ -15,6 +15,7 @@ import br.com.caelum.vraptor.view.Results;
 import br.ufpi.loes.oracleTest.common.controller.BaseController;
 import br.ufpi.loes.oracleTest.web.model.Application;
 import br.ufpi.loes.oracleTest.web.repository.ApplicationDao;
+import br.ufpi.loes.oracleTest.web.repository.StatisticApplicationDao;
 
 @Controller
 @Path("/backend/application")
@@ -22,15 +23,17 @@ public class ApplicationController extends BaseController {
 
 	private final Result result;
 	private final ApplicationDao applicationDao;
+	private final StatisticApplicationDao statisticApplicationDao;
 
 	protected ApplicationController() {
-		this(null, null);
+		this(null, null, null);
 	}
 
 	@Inject
-	public ApplicationController(Result result, ApplicationDao applicationDao) {
+	public ApplicationController(Result result, ApplicationDao applicationDao, StatisticApplicationDao statisticApplicationDao) {
 		this.result = result;
 		this.applicationDao = applicationDao;
+		this.statisticApplicationDao = statisticApplicationDao;
 	}
 
 	@Get("")
@@ -80,5 +83,13 @@ public class ApplicationController extends BaseController {
 				.serialize();
 
 	}
+	
+	@Get("/statistic/{id}")
+	public void getStatisticsByApplication(Long id) {
+		result.use(Results.json()).withoutRoot().from(statisticApplicationDao.getStatisticByApplication(id))
+				.serialize();
+
+	}
+
 
 }
