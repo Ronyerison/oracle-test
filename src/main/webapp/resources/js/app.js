@@ -113,6 +113,10 @@ app.config([
 					'' : {
 						controller : 'ApplicationController',
 						templateUrl : 'views/dashboard/application/application.html'
+					},
+					'stats@dashboard.view-application': {
+						controller : 'StatisticController',
+						templateUrl : 'views/partials/stats.html'
 					}
 				}
 			}).state('dashboard.actions-application', {

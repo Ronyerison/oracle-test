@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- <meta http-equiv="pragma" content="no-cache"> -->
 <base href="/oracle-test/">
 <title>Oracle Test</title>
 
@@ -19,14 +20,14 @@
 <script type="text/javascript" src="resources/js/controllers/ApplicationController.js"></script>
 <script type="text/javascript" src="resources/js/controllers/UserController.js"></script>
 <script type="text/javascript" src="resources/js/controllers/ActionController.js"></script>
-
+<script type="text/javascript" src="resources/js/controllers/StatisticController.js"></script>
 
 <!-- ########################### SERVICES ##########################-->
 <script type="text/javascript" src="resources/js/services/TodoService.js"></script>
 <script type="text/javascript" src="resources/js/services/ApplicationService.js"></script>
 <script type="text/javascript" src="resources/js/services/UserService.js"></script>
 <script type="text/javascript" src="resources/js/services/ActionService.js"></script>
-
+<script type="text/javascript" src="resources/js/services/StatisticService.js"></script>
 
 </head>
 
