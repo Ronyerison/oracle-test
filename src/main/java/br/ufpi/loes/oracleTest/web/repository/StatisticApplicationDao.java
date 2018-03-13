@@ -40,13 +40,19 @@ public class StatisticApplicationDao extends GenericDao<StatisticApplication> {
 	}
 
 	public StatisticApplication getStatisticBySaveDate(StatisticApplication statistic) {
-		TypedQuery<StatisticApplication> query = entityManager.createQuery(
-				"Select s from StatisticApplication s where s.saveDate = :saveDate AND s.application = :application",
-				StatisticApplication.class);
-		query.setParameter("saveDate", statistic.getSaveDate());
-		query.setParameter("application", statistic.getApplication());
+		try {
+			TypedQuery<StatisticApplication> query = entityManager.createQuery(
+					"Select s from StatisticApplication s where s.saveDate = :saveDate AND s.application = :application",
+					StatisticApplication.class);
+			query.setParameter("saveDate", statistic.getSaveDate());
+			query.setParameter("application", statistic.getApplication());
 
-		return query.getSingleResult();
+			return query.getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			// e.printStackTrace();
+			return null;
+		}
 	}
 
 	public List<StatisticApplication> getStatisticByApplication(Long idApplication) {
