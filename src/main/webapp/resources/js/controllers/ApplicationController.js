@@ -43,7 +43,7 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 		});
 	}
 	
-	$scope.view = function() {
+	$scope.listSimulation = function() {
 		var app = {
 				id: $stateParams.id,
 				name: $stateParams.name,
@@ -55,6 +55,7 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 			if(data.length > 0) {
 				$scope.qntSimulations = data.length;
 				$scope.application.simulations = data;
+				console.log(data)
 			} else {
 				$scope.error = "Não existem simulações cadastradas !!!"
 			}

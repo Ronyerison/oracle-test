@@ -111,13 +111,13 @@ app.config([
 				url : '/applications/view-application/?{id&name&url}',
 				views : {
 					'' : {
-						controller : 'ApplicationController',
+						controller : 'StatisticController',
 						templateUrl : 'views/dashboard/application/application.html'
 					},
-					'stats@dashboard.view-application': {
-						controller : 'StatisticController',
-						templateUrl : 'views/partials/stats.html'
-					}
+//					'stats@dashboard.view-application': {
+//						controller : 'StatisticController',
+//						templateUrl : 'views/partials/stats.html'
+//					}
 				}
 			}).state('dashboard.actions-application', {
 				url : '/applications/application/actions',
