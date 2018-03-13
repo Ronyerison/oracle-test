@@ -31,6 +31,24 @@ h6 {
   font-weight: 700;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
+section {
+  padding: 100px 0; }
+  section h2.section-heading {
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 15px; }
+  section h3.section-subheading {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 75px;
+    text-transform: none;
+    font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+@media (min-width: 768px) {
+  section {
+    padding: 150px 0; } }
+
 .btn {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700; }
@@ -62,9 +80,6 @@ img::selection {
 
 img::-moz-selection {
   background: transparent; }
-
-body {
-  -webkit-tap-highlight-color: #fed136; }
 
 body {
   -webkit-tap-highlight-color: #fed136; }
@@ -124,7 +139,6 @@ body {
  /*adicionado do boostrap atual*/
 .page-header {
 	padding-bottom: 9px;
-	margin: 10% 0 20px;
 	border-bottom: 1px solid #eee;
 }
  
