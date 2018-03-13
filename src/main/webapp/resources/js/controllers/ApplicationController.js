@@ -1,14 +1,5 @@
 angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$stateParams', '$cookieStore', '$state', '$filter', 'ApplicationService', function($scope, $stateParams, $cookieStore, $state, $filter, ApplicationService) {
-	
-	if ($cookieStore.get("application")) {
-		if($state.is('dashboard.view-application')){
-			$scope.application = JSON.parse($cookieStore.get("application"));
-			console.log($scope.application);
-		} else {
-			$cookieStore.remove("application");
-		}
-    }
-	
+
 	$scope.add = function() {
 		$scope.userInfo = JSON.parse($cookieStore.get("userInfo"));
 		$scope.application.owner = $scope.userInfo;
@@ -62,13 +53,14 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 		$scope.application = app;
 		ApplicationService.getSimulations(app).success(function(data) {
 			if(data.length > 0) {
+				$scope.qntSimulations = data.length;
 				$scope.application.simulations = data;
 			} else {
 				$scope.error = "Não existem simulações cadastradas !!!"
 			}
 		}).error(function(data, status) {
 			//TODO: ADD MENSAGEM DE ERRO
-			console.log("Deu errado ao listar as simulações da applicação");
+			console.log("Deu errado ao listar as simulações da applicação. Retornado: ", data, ". ", status);
 		});
 	}
 	
