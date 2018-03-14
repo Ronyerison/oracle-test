@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-6">
+<div class="col-lg-3 col-md-6" ng-init="getTotalActions()">
 	<div class="panel panel-yellow">
 		<div class="panel-heading">
 			<div class="row">
@@ -7,7 +7,7 @@
 				</div>
 				
 				<div class="col-xs-9 text-right">
-					<div class="huge">30</div>
+					<div class="huge">{{totalActions}}</div>
 					<div>Acoes Capturadas</div>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 				</div>
 				
 				<div class="col-xs-9 text-right">
-					<div class="huge">1{{statistic.actionsNumber}}</div>
+					<div class="huge">10</div>
 					<div>Simulacoes</div>
 				</div>
 			</div>
