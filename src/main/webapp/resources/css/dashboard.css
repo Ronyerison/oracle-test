@@ -598,6 +598,10 @@ body {
     color: #df8a13;
 }
 
+.panel-blue {
+    border-color: #0080ff;
+}
+
 .panel-blue .panel-heading {
     border-color: #0080ff;
     color: #fff;
@@ -609,7 +613,7 @@ body {
 }
 
 .panel-blue a:hover {
-    color: #0127fe;
+    color: #012efe;
 }
 
 /*col- bootstrap*/
