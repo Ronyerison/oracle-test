@@ -43,34 +43,4 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 		});
 	}
 	
-	$scope.listSimulation = function() {
-		var app = {
-				id: $stateParams.id,
-				name: $stateParams.name,
-				url: $stateParams.url
-		}
-		
-		$scope.application = app;
-		ApplicationService.getSimulations(app).success(function(data) {
-			if(data.length > 0) {
-				$scope.qntSimulations = data.length;
-				$scope.application.simulations = data;
-				console.log(data)
-			} else {
-				$scope.error = "Não existem simulações cadastradas !!!"
-			}
-		}).error(function(data, status) {
-			//TODO: ADD MENSAGEM DE ERRO
-			console.log("Deu errado ao listar as simulações da applicação. Retornado: ", data, ". ", status);
-		});
-	}
-	
-	$scope.listSimulations = function(application) {
-		ApplicationService.getSimulations(application).then(function(response) {
-			$state.go('dashboard.view-application', {idApplication: application.id}, {reload: true});
-		}).catch(function(err){
-			$scope.error = "Error ao buscar a lista de simulações !!!";
-		});
-	}
-	
 }]);
