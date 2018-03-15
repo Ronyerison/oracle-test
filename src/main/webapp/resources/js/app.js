@@ -5,8 +5,7 @@ var app = angular.module("oracle-test", [ 'ngResource', 'ui.router',
 app.run(function($rootScope, $location, $state, LoginService) {
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams,
 			fromState, fromParams) {
-		console.log('Changed state to: ' + toState);
-		
+		console.log('Changed state to: ' + toState.name);
 		if(toState.name === 'main.login'){
 			console.log('Entrou no login');
 			return;
@@ -17,16 +16,14 @@ app.run(function($rootScope, $location, $state, LoginService) {
 		} else {
 			isPrivaty = false;
 		}
+		
 		console.log(LoginService.isAuthenticated());
 		if (LoginService.isAuthenticated() === false && isPrivaty) {
 			console.log('Entrou na verificacao');
 			$state.transitionTo('main.login');
 			event.preventDefault();
 		}
-		console.log('Passou direto!');
 	});
-
-	
 });
 
 app.config([
@@ -113,10 +110,6 @@ app.config([
 					'' : {
 						controller : 'StatisticController',
 						templateUrl : 'views/dashboard/application/application.html'
-					},
-					'stats@dashboard.view-application': {
-						controller : 'StatisticController',
-						templateUrl : 'views/partials/stats.html'
 					}
 				}
 			}).state('dashboard.actions-application', {
