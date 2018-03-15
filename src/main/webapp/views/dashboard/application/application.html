@@ -1,6 +1,6 @@
 <!-- <link rel="stylesheet" type="text/css" href="resources/lib/morrisjs/morris.css"> -->
 <!-- Custom scripts for this ChartsMorris -->
-
+<script type="text/javascript" src="resources/js/directives/dashboard/stats/stats.js"></script>
 
 <div class="row">
 	<div class="col-lg-12">
@@ -8,20 +8,136 @@
 	</div>
 </div>
 
-<div class="row" ui-view="stats"></div>
+<div class="row">
+	<div class="col-lg-3 col-md-6" ng-init="getTotalActions()">
+		<div class="panel panel-yellow">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-sitemap fa-5x"></i>
+					</div>
+					
+					<div class="col-xs-9 text-right">
+						<div class="huge">{{actionsNumber}}</div>
+						<div>Acoes Capturadas</div>
+					</div>
+				</div>
+			</div>
+			
+			<a href="">
+				<div class="panel-footer">
+					<span class="pull-left">Visualizar</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-green">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-gears fa-5x"></i>
+					</div>
+					
+					<div class="col-xs-9 text-right">
+						<div class="huge">{{application.qntSimulation}}</div>
+						<div>Simulacoes</div>
+					</div>
+				</div>
+			</div>
+				
+			<a href="">
+				<div class="panel-footer">
+					<span class="pull-left">Visualizar</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-blue">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-gears fa-5x"></i>
+					</div>
+					
+					<div class="col-xs-9 text-right">
+						<div class="huge">110</div>
+						<div>Informacoes</div>
+					</div>
+				</div>
+			</div>
+				
+			<a href="">
+				<div class="panel-footer">
+					<span class="pull-left">Visualizar</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-red">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-gears fa-5x"></i>
+					</div>
+					
+					<div class="col-xs-9 text-right">
+						<div class="huge">15</div>
+						<div>Finalizados</div>
+					</div>
+				</div>
+			</div>
+				
+			<a href="">
+				<div class="panel-footer">
+					<span class="pull-left">Visualizar</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
 
 <div class="row">
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-lg-8 col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Captura de Acoes
 			</div>
 			
 			<div class="panel-body" ng-init="statisticAction()">
-<!-- 				<div id="statisticApplication"></div> -->
 				<canvas id="canvas"></canvas>
-<!-- 				<canvas id="line" class="chart chart-line chart-xl" data="statistcApplication.data" labels="statistcApplication.labels" legend="true" click="statistcApplication.onClick"></canvas> -->
 			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-4 col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i> Relatorios das Simulacoes
+			</div>
+			
+			<div class="panel-body" ng-init="simulations()">
+				<div class="list-group" ng-repeat="simulation in application.simulations">
+					<a href="#" class="list-group-item link" >
+						<i class="fa fa-calendar fa-fw"></i> {{simulation.simulationDate | date:'dd/MM/yyyy'}}
+						<span class="pull-right text-muted small">{{simulation.simulationDate | date:'HH:mm'}} h</span>
+					</a>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </div>
