@@ -14,10 +14,10 @@ body {
 p {
   line-height: 1.75; }
 
-a {
-  color: #fed136; }
-  a:hover {
-    color: #fec503; }
+/* a { */
+/*   color: #fed136; } */
+/*   a:hover { */
+/*     color: #fec503; } */
 
 .text-primary {
   color: #fed136 !important; }
