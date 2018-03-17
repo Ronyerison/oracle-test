@@ -126,8 +126,8 @@
 			</div>
 			
 			<div class="panel-body" ng-init="simulations()">
-				<div class="list-group" ng-repeat="simulation in application.simulations">
-					<a href="#" class="list-group-item link" >
+				<div class="list-group list-group-flush" ng-repeat="simulation in application.simulations">
+					<a ui-sref="dashboard.view-simulation({idSimulation: simulation.id, nameApp: application.name})" class="list-group-item link" >
 						<i class="fa fa-calendar fa-fw"></i> {{simulation.simulationDate | date:'dd/MM/yyyy'}}
 						<span class="pull-right text-muted small">{{simulation.simulationDate | date:'HH:mm'}} h</span>
 					</a>
