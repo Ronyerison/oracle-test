@@ -115,6 +115,7 @@ angular.module("oracle-test").controller('StatisticController', [ '$scope', '$co
 		if(simulation !== undefined) {
 			console.log("DADOS DA SIMULACAO: ", simulation);
 			$scope.simulation = simulation;
+			$scope.applicationName = $stateParams.nameApp;
 		} else {
 			console.log("ERRO: simulação não encontrada !!!");
 		}
