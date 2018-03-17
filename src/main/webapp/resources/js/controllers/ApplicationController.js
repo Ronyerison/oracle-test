@@ -34,6 +34,7 @@ angular.module("oracle-test").controller('ApplicationController', [ '$scope', '$
 			console.log(data.length);
 			if(data.length > 0) {
 				$scope.listApplications = data;
+				console.log(data);
 			} else {
 				$scope.nullApp = " ainda nao foi registrada nenhuma aplicacao !!!";
 			}
