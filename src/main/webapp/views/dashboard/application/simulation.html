@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Simulacao</h1>
+	</div>
+</div>
+
+<div class="row" ng-init="getSimulation()">
+	<div class="col-lg-6 col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-th fa-fw"></i> Matriz de Confusao
+			</div>
+			
+			<div class="panel-body" ng-init="matrizConfusion()">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th></th>
+								<th class="table-active text-center">Valido (V)</th>
+								<th class="table-active text-center">Falha (F)</th>
+								<th class="table-active text-center">Possivel Falha (PF)</th>
+							</tr>
+						</thead>
+					
+						<tbody>
+							<tr ng-repeat="row in simulation.report.confusionMatrixString">
+								<td  class="text-center" ng-repeat="col in row" ng-class="{'table-active font-weight-bold' : $first}">{{col}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- INFORMAÇÕES DA SIMULAÇÃO (DADOS ATOMICOS) -->
+	<div class="col-lg-6 col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-info-circle fa-fw"></i> Informacoes Inicias
+			</div>
+			
+			<div class="panel-body">
+				<div class="list-group list-group-flush">
+					<div class="list-group-item">
+						<canvas id="pieReportPct" ng-init="pieReportPct()"></canvas>
+					</div>
+					
+					<div class="list-group-item">
+						<canvas id="doughnutReportIndices" ng-init="doughnutReportIndices()"></canvas>					
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="resources/lib/chartjs/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="resources/lib/chartjs/samples/utils.js"></script>
