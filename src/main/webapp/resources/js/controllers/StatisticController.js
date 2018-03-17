@@ -203,6 +203,82 @@ angular.module("oracle-test").controller('StatisticController', [ '$scope', '$co
 		window.doughnutReport = new Chart(ctx, config);
 	}
 	
+	$scope.barClassMeasurements = function() {
+		var color = Chart.helpers.color;
+		var simulation = $scope.simulation;
+		var labelsClassMeasurementRate = ["fMeasur", "Area ROC", "Recall", "Precisao", "Posito", "negativo", "Falso Positivo", "Falso Negativo"];
+		
+		var barChartData = {
+			labels: labelsClassMeasurementRate,
+			datasets: [
+				{
+					label: 'Valido',
+					backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
+					borderColor: window.chartColors.green,
+					borderWidth: 1,
+					data: [
+						$filter('number')(simulation.report.classMeasurements[0].fMeasure),
+						$filter('number')(simulation.report.classMeasurements[0].areaUnderROC),
+						$filter('number')(simulation.report.classMeasurements[0].recall),
+						$filter('number')(simulation.report.classMeasurements[0].precisionRate),
+						$filter('number')(simulation.report.classMeasurements[0].truePositiveRate),
+						$filter('number')(simulation.report.classMeasurements[0].trueNegativeRate),
+						$filter('number')(simulation.report.classMeasurements[0].falsePositiveRate),
+						$filter('number')(simulation.report.classMeasurements[0].falseNegativeRate)
+					]
+				},
+				{
+					label: "Falha",
+					backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+					borderColor: window.chartColors.red,
+					borderWidth: 1,
+					data: [
+						$filter('number')(simulation.report.classMeasurements[1].fMeasure),
+						$filter('number')(simulation.report.classMeasurements[1].areaUnderROC),
+						$filter('number')(simulation.report.classMeasurements[1].recall),
+						$filter('number')(simulation.report.classMeasurements[1].precisionRate),
+						$filter('number')(simulation.report.classMeasurements[1].truePositiveRate),
+						$filter('number')(simulation.report.classMeasurements[1].trueNegativeRate),
+						$filter('number')(simulation.report.classMeasurements[1].falsePositiveRate),
+						$filter('number')(simulation.report.classMeasurements[1].falseNegativeRate)
+					]
+				},
+				{
+					label: "Possivel Falha",
+					backgroundColor: color(window.chartColors.yellow).alpha(0.5).rgbString(),
+					borderColor: window.chartColors.yellow,
+					borderWidth: 1,
+					data: [
+						$filter('number')(simulation.report.classMeasurements[2].fMeasure),
+						$filter('number')(simulation.report.classMeasurements[2].areaUnderROC),
+						$filter('number')(simulation.report.classMeasurements[2].recall),
+						$filter('number')(simulation.report.classMeasurements[2].precisionRate),
+						$filter('number')(simulation.report.classMeasurements[2].truePositiveRate),
+						$filter('number')(simulation.report.classMeasurements[2].trueNegativeRate),
+						$filter('number')(simulation.report.classMeasurements[2].falsePositiveRate),
+						$filter('number')(simulation.report.classMeasurements[2].falseNegativeRate)
+					]
+				}
+			]
+		};
+		
+		var ctx = document.getElementById('barClassMeasurements').getContext('2d');
+		window.myBar = new Chart(ctx, {
+			type: 'bar',
+			data: barChartData,
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'Taixas'
+				}
+			}
+		});
+	}
+	
 	$scope.simulations = function() {
 		$scope.application = {
 				id: $stateParams.id,
