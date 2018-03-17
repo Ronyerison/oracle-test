@@ -112,6 +112,14 @@ app.config([
 						templateUrl : 'views/dashboard/application/application.html'
 					}
 				}
+			}).state('dashboard.view-simulation', {
+				url : '/applications/view-application/simulation/?{idSimulation&nameApp}',
+				views : {
+					'' : {
+						controller : 'StatisticController',
+						templateUrl : 'views/dashboard/application/simulation.html'
+					}
+				}
 			}).state('dashboard.actions-application', {
 				url : '/applications/application/actions',
 				views : {
