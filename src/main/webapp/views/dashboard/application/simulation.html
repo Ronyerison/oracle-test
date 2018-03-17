@@ -6,9 +6,36 @@
 
 <div class="row" ng-init="getSimulation()">
 	<div class="col-lg-6 col-md-12">
+		<div>
+			<form>
+				<div class="form-group row">
+					<label for="applicationName" class="col col-form-label">Aplicacao: </label>
+					<div class="col">
+						<input type="text" readonly class="form-control-lg form-control-plaintext text-right font-weight-bold font-italic pull-right" id="applicationName" value="{{applicationName}}">
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label for="simulationDate" class="col col-form-label">Data da Simulacao: </label>
+					<div class="col">
+						<input type="text" readonly class="form-control-lg form-control-plaintext text-right font-weight-bold font-italic pull-right" id="simulationDate" aria-describedby="timeSimulation" value="{{simulation.simulationDate | date:'dd/MM/yyyy'}}">
+						<small id="timeSimulation" class="form-text text-muted pull-right">as {{simulation.simulationDate | date:'HH:mm'}} h</small>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label for="userName" class="col col-form-label">Simulacao Execultada por: </label>
+					<div class="col">
+						<input type="text" readonly class="form-control-lg form-control-plaintext text-right font-weight-bold font-italic pull-right" id="userName" aria-describedby="emailUser" value="{{simulation.user.name}}">
+						<small id="emailUser" class="form-text text-muted pull-right">e-mail: {{simulation.user.email}}</small>
+					</div>
+				</div>
+			</form>
+		</div>
+	
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-th fa-fw"></i> Matriz de Confusao
+				<i class="fa fa-th fa-fw"></i> Dados da Simulacao
 			</div>
 			
 			<div class="panel-body" ng-init="matrizConfusion()">
@@ -38,7 +65,7 @@
 	<div class="col-lg-6 col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-info-circle fa-fw"></i> Informacoes Inicias
+				<i class="fa fa-info-circle fa-fw"></i> Outros Dados
 			</div>
 			
 			<div class="panel-body">
