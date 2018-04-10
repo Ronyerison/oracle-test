@@ -106,6 +106,8 @@
 	</div>
 </div>
 
+<br />
+
 <div class="row">
 	<div class="col-lg-8 col-md-12">
 		<div class="panel panel-default">
@@ -126,14 +128,43 @@
 			</div>
 			
 			<div class="panel-body" ng-init="simulations()">
+				
+				<div class="form-group text-center">
+					<button class="btn btn-primary btn-sm" ng-click="generateInvalideActions()">Acoes Invalidas</button>
+					<button class="btn btn-success btn-sm" ng-click="simulation()">Nova Simulacao</button>
+				</div>
+				
+				<br />
+				
 				<div class="list-group list-group-flush" ng-repeat="simulation in application.simulations">
 					<a ui-sref="dashboard.view-simulation({idSimulation: simulation.id, nameApp: application.name})" class="list-group-item link" >
 						<i class="fa fa-calendar fa-fw"></i> {{simulation.simulationDate | date:'dd/MM/yyyy'}}
 						<span class="pull-right text-muted small">{{simulation.simulationDate | date:'HH:mm'}} h</span>
 					</a>
 				</div>
+				
+				<br />
+				
+				<nav aria-label="Navigation Simulations">
+ 					<ul class="pagination justify-content-center">
+    					<li class="page-item">
+							<a class="page-link" href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+						</li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item">
+							<a class="page-link" href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Next</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
 			</div>
-			
 		</div>
 	</div>
 </div>
