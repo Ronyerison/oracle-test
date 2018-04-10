@@ -130,8 +130,17 @@
 			<div class="panel-body" ng-init="simulations()">
 				
 				<div class="form-group text-center">
-					<button class="btn btn-primary btn-sm" ng-click="generateInvalideActions()">Acoes Invalidas</button>
+					<button class="btn btn-primary btn-sm" ng-click="generateInvalideActions()" data-toggle="modal" data-target="#msg_invalid_actions">Acoes Invalidas</button>
 					<button class="btn btn-success btn-sm" ng-click="simulation()">Nova Simulacao</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="msg_invalid_actions" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-sm" role="document">						
+							<div class="modal-content alert alert-info" role="alert">
+								{{ msg_invalid_action }}	
+							</div>
+						</div>
+					</div>
 				</div>
 				
 				<br />
