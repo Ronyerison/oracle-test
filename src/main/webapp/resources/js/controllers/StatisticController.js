@@ -1,4 +1,4 @@
-angular.module("oracle-test").controller('StatisticController', [ '$scope', '$cookieStore', '$state', '$stateParams', '$filter', 'StatisticService', function($scope, $cookieStore, $state, $stateParams, $filter, StatisticService) {
+angular.module("oracle-test").controller('StatisticController', [ '$scope', '$cookieStore', '$state', '$stateParams', '$filter', 'StatisticService', 'ActionService', function($scope, $cookieStore, $state, $stateParams, $filter, StatisticService, ActionService) {
 	
 	function stringToMatriz(stringM) {
 		stringM = stringM.split("], ");
@@ -276,6 +276,25 @@ angular.module("oracle-test").controller('StatisticController', [ '$scope', '$co
 					text: 'Taixas'
 				}
 			}
+		});
+	}
+	
+	$scope.generateInvalideActions = function() {
+		ActionService.generateInvalideActions($scope.application.id).success(function(data) {
+			console.log("Methodo para geração de ações invalidas execultado com sucesso !!!");
+		}).error(function(data, status) {
+			console.log("Deu errado");
+		});
+	}
+	
+	$scope.simulation = function() {
+		ActionService.executeMethod($scope.application.id).success(function() {
+			console.log("Methodo para geração de simulação execultado com sucesso !!!");
+			$scope.simulations();
+		}).error(function(data, status) {
+			
+			console.log("Erro ao execultar o metodo !!!");
+			
 		});
 	}
 	
