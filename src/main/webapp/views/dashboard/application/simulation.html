@@ -52,7 +52,7 @@
 					
 						<tbody>
 							<tr ng-repeat="row in simulation.report.confusionMatrixString">
-								<td  class="text-center" ng-repeat="col in row" ng-class="{'table-active font-weight-bold' : $first}">{{col}}</td>
+								<td  class="text-center" ng-repeat="col in row track by $index" ng-class="{'table-active font-weight-bold' : $first}">{{ col }}</td>
 							</tr>
 						</tbody>
 					</table>
