@@ -281,15 +281,16 @@ angular.module("oracle-test").controller('StatisticController', [ '$scope', '$co
 	
 	$scope.generateInvalideActions = function() {
 		ActionService.generateInvalideActions($scope.application.id).success(function(data) {
-			console.log("Methodo para geração de ações invalidas execultado com sucesso !!!");
+			$scope.msg_invalid_action = "Acoes Invalidadas Geradas com sucesso !!!";
 		}).error(function(data, status) {
-			console.log("Deu errado");
+			console.log("Deu errado na geração de ações invalidas !!");
+			$scope.msg_invalid_action = "Error: nao foi possivel gerar acoes invalidas !!!";
 		});
 	}
 	
 	$scope.simulation = function() {
 		ActionService.executeMethod($scope.application.id).success(function() {
-			console.log("Methodo para geração de simulação execultado com sucesso !!!");
+			console.log("Metodo para geração de simulação execultado com sucesso !!!");
 			$scope.simulations();
 		}).error(function(data, status) {
 			
