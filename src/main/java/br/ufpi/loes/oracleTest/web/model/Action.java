@@ -20,6 +20,8 @@ public class Action implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String sActionType;
+	@Lob
+	@Column(length = 1000)
 	private String sContent;
 	private Long sPosX;
 	private Long sPosY;
@@ -42,7 +44,7 @@ public class Action implements Serializable {
 	private String sJhm;
 	private String sActionJhm;
 	private String sSectionJhm;
-	private Boolean sDeleted;
+	private String sDeleted;
 	private String createdAt;
 	private String updateAt;
 	private Long sOracleElements;
@@ -88,7 +90,7 @@ public class Action implements Serializable {
 	public Action(Long id, String sActionType, String sContent, Long sPosX, Long sPosY, String sTag, String sTagIndex,
 			Long sTime, String sUrl, String sContentText, String sClass, String sId, String sName, String sXPath,
 			String sUserAgent, String sClient, Long sVersion, String sUserName, String sRole, String sJhm,
-			String sActionJhm, String sSectionJhm, Boolean sDeleted, String createdAt, String updateAt,
+			String sActionJhm, String sSectionJhm, String sDeleted, String createdAt, String updateAt,
 			Long sOracleElements, Long sOracleVisibleElements, String sOracleUrl, String sOracleVeredict,
 			String captureCode, Application application) {
 		this.id = id;
@@ -335,11 +337,11 @@ public class Action implements Serializable {
 		this.sSectionJhm = sSectionJhm;
 	}
 
-	public Boolean getsDeleted() {
+	public String getsDeleted() {
 		return sDeleted;
 	}
 
-	public void setsDeleted(Boolean sDeleted) {
+	public void setsDeleted(String sDeleted) {
 		this.sDeleted = sDeleted;
 	}
 
